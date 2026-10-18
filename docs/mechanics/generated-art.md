@@ -86,19 +86,17 @@ PNGs are 256-colour indexed (median cut, no dithering) which keeps them about a 
   screen (backdrop + all buildings of that faction), the 4 map-town levels, the 12 siege pieces.
   `GENERATED_OMIT` lists rejected pictures that keep the procedural art.
 
-## Status (2026-10-18)
+## Status (2026-10-18, evening)
 
-Generation stopped at the Codex usage limit: 132 map-object files (124 generated images incl. 8
-keymaster-tent colours), 60 town buildings (halls, forts, citadels of every faction: no faction set
-complete yet, so town screens stay procedural), 2 artifact icons. Still to make: ~690 images (rest of
-the map objects, map towns, backdrops, faction buildings, 6 artifacts, war machines, boat, siege).
-Resume (skips what exists, salvages interrupted runs):
-`GENART_DIR=... node tools/genart/generate.mjs --parallel 10`, then `resize.mjs` and
-`build-packs-manifest.mjs --prune`; nothing else needs to change.
-
-Priority: inside the pack layer the generated entry wins (`resolvePackRef` asks `resolveGenerated`
-first); for `object`, `building`, `town`, `creature` the pack layer runs before Duelyst and the
-procedural painters (`PACKS_FIRST` in `src/gfx/index.js`); hero boats skip Duelyst.
+Generation stops whenever the Codex usage limit is reached (last stop: 2026-10-18 ~20:24, next reset
+2026-10-19 03:09). Present: 152 map-object files (incl. 8 keymaster-tent colours and the map towns of
+castle, rampart, tower, inferno and necropolis, which are in use), 60 town buildings (halls, forts,
+citadels; no faction's town-screen set is complete, so town screens stay procedural), 2 artifact icons,
+the ammo cart. Still to make: ~670 images (other map objects, 6 map-town factions, all backdrops,
+faction buildings, 6 artifacts, first aid tent, arrow tower, boat, all siege pieces).
+Resume (skips what exists, salvages interrupted runs; raw dir defaults to `.genart/`):
+`node tools/genart/generate.mjs --parallel 10`, then `node tools/genart/resize.mjs` and
+`node tools/build-packs-manifest.mjs --prune`; nothing else needs to change.
 
 ## Checklist
 

@@ -6,7 +6,7 @@
    "author": "the H3online project author (generated with OpenAI image generation via Codex CLI)",
    "license": "LicenseRef-Project-Generated",
    "url": "https://developers.openai.com/codex/cli",
-   "files": 194
+   "files": 215
   },
   "sbs-tiny-textures": {
    "name": "Tiny Texture Pack 1, 2 and 3",
@@ -1995,6 +1995,17 @@
     255
    ]
   },
+  "generated/object/town_castle_castle.png": {
+   "bytes": 24807,
+   "w": 256,
+   "h": 163,
+   "b": [
+    0,
+    0,
+    255,
+    162
+   ]
+  },
   "generated/object/town_castle_citadel.png": {
    "bytes": 22303,
    "w": 256,
@@ -2006,6 +2017,83 @@
     143
    ]
   },
+  "generated/object/town_castle_fort.png": {
+   "bytes": 28739,
+   "w": 256,
+   "h": 176,
+   "b": [
+    0,
+    0,
+    255,
+    175
+   ]
+  },
+  "generated/object/town_castle_village.png": {
+   "bytes": 21462,
+   "w": 256,
+   "h": 129,
+   "b": [
+    0,
+    0,
+    255,
+    128
+   ]
+  },
+  "generated/object/town_dungeon_fort.png": {
+   "bytes": 26948,
+   "w": 256,
+   "h": 160,
+   "b": [
+    0,
+    0,
+    255,
+    159
+   ]
+  },
+  "generated/object/town_dungeon_village.png": {
+   "bytes": 26522,
+   "w": 256,
+   "h": 160,
+   "b": [
+    0,
+    0,
+    255,
+    159
+   ]
+  },
+  "generated/object/town_inferno_castle.png": {
+   "bytes": 26575,
+   "w": 256,
+   "h": 169,
+   "b": [
+    0,
+    0,
+    255,
+    168
+   ]
+  },
+  "generated/object/town_inferno_citadel.png": {
+   "bytes": 24021,
+   "w": 256,
+   "h": 156,
+   "b": [
+    0,
+    0,
+    255,
+    155
+   ]
+  },
+  "generated/object/town_inferno_fort.png": {
+   "bytes": 23294,
+   "w": 256,
+   "h": 142,
+   "b": [
+    0,
+    0,
+    255,
+    141
+   ]
+  },
   "generated/object/town_inferno_village.png": {
    "bytes": 21230,
    "w": 256,
@@ -2015,6 +2103,138 @@
     0,
     255,
     122
+   ]
+  },
+  "generated/object/town_necropolis_castle.png": {
+   "bytes": 25767,
+   "w": 256,
+   "h": 170,
+   "b": [
+    0,
+    0,
+    255,
+    169
+   ]
+  },
+  "generated/object/town_necropolis_citadel.png": {
+   "bytes": 24100,
+   "w": 256,
+   "h": 161,
+   "b": [
+    0,
+    1,
+    255,
+    160
+   ]
+  },
+  "generated/object/town_necropolis_fort.png": {
+   "bytes": 24324,
+   "w": 256,
+   "h": 159,
+   "b": [
+    0,
+    0,
+    255,
+    158
+   ]
+  },
+  "generated/object/town_necropolis_village.png": {
+   "bytes": 22850,
+   "w": 256,
+   "h": 162,
+   "b": [
+    0,
+    1,
+    255,
+    161
+   ]
+  },
+  "generated/object/town_rampart_castle.png": {
+   "bytes": 28005,
+   "w": 256,
+   "h": 163,
+   "b": [
+    0,
+    0,
+    255,
+    162
+   ]
+  },
+  "generated/object/town_rampart_citadel.png": {
+   "bytes": 26650,
+   "w": 256,
+   "h": 162,
+   "b": [
+    0,
+    0,
+    255,
+    161
+   ]
+  },
+  "generated/object/town_rampart_fort.png": {
+   "bytes": 26038,
+   "w": 256,
+   "h": 158,
+   "b": [
+    0,
+    0,
+    255,
+    157
+   ]
+  },
+  "generated/object/town_rampart_village.png": {
+   "bytes": 26467,
+   "w": 256,
+   "h": 160,
+   "b": [
+    0,
+    0,
+    255,
+    159
+   ]
+  },
+  "generated/object/town_tower_castle.png": {
+   "bytes": 23896,
+   "w": 256,
+   "h": 164,
+   "b": [
+    0,
+    0,
+    255,
+    163
+   ]
+  },
+  "generated/object/town_tower_citadel.png": {
+   "bytes": 24423,
+   "w": 256,
+   "h": 157,
+   "b": [
+    0,
+    0,
+    255,
+    156
+   ]
+  },
+  "generated/object/town_tower_fort.png": {
+   "bytes": 26181,
+   "w": 256,
+   "h": 167,
+   "b": [
+    0,
+    1,
+    255,
+    166
+   ]
+  },
+  "generated/object/town_tower_village.png": {
+   "bytes": 23115,
+   "w": 256,
+   "h": 143,
+   "b": [
+    0,
+    0,
+    255,
+    142
    ]
   },
   "generated/object/trading_post.png": {
@@ -2246,6 +2466,17 @@
     0,
     255,
     156
+   ]
+  },
+  "generated/unit/ammo_cart.png": {
+   "bytes": 19893,
+   "w": 192,
+   "h": 168,
+   "b": [
+    0,
+    0,
+    191,
+    167
    ]
   },
   "idylwild-icons/breastplate.png": {
