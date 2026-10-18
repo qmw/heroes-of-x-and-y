@@ -1,0 +1,181 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Duelyst Art Gallery</title>
+<style>
+  :root { --bg: #15110e; --panel: #241c16; --ink: #eadfc8; --dim: #a89878; --gold: #d8ad45; }
+  body { margin: 0; background: var(--bg); color: var(--ink); font: 13px/1.35 system-ui, sans-serif; }
+  header { position: sticky; top: 0; z-index: 2; background: #0e0b09ee; padding: 8px 16px; border-bottom: 1px solid #3a2e22; display: flex; gap: 12px; flex-wrap: wrap; align-items: center; }
+  header h1 { font-size: 16px; margin: 0; color: var(--gold); }
+  header a { color: var(--dim); }
+  label { color: var(--dim); }
+  main { padding: 0 16px 40px; }
+  h2 { color: var(--gold); border-bottom: 1px solid #3a2e22; padding-bottom: 4px; margin-top: 28px; }
+  h3 { color: var(--dim); margin: 14px 0 6px; font-size: 13px; text-transform: uppercase; letter-spacing: .06em; }
+  .grid { display: flex; flex-wrap: wrap; gap: 6px; }
+  .cell { background: var(--panel); border: 1px solid #3a2e22; border-radius: 4px; padding: 4px; text-align: center; width: 132px; }
+  .cell.wide { width: 264px; }
+  .cell canvas, .cell img { image-rendering: pixelated; display: block; margin: 0 auto; }
+  .cell .n { font-size: 11px; overflow-wrap: anywhere; }
+  .cell .u { font-size: 10px; color: var(--dim); overflow-wrap: anywhere; }
+  .row { display: flex; justify-content: center; gap: 2px; }
+  .bf { width: 360px; }
+  .bf .stack { position: relative; width: 352px; height: 198px; overflow: hidden; }
+  .bf .stack img { position: absolute; inset: 0; width: 100%; height: 100%; object-fit: cover; image-rendering: auto; }
+  #status { color: var(--dim); }
+  .fallback { color: #e07a5a; }
+</style>
+</head>
+<body>
+<header>
+  <h1>Duelyst art (CC0) mapped onto H3online</h1>
+  <span id="status">loading manifests...</span>
+  <label><input type="checkbox" id="anim" checked> animate</label>
+  <a href="#creatures">creatures</a><a href="#heroes">heroes</a><a href="#spells">spells</a><a href="#artifacts">artifacts</a>
+  <a href="#misc">skills/resources</a><a href="#battlefields">battlefields</a>
+</header>
+<main>
+  <section id="creatures"><h2>Creatures (idle / attack / death)</h2><div id="creature-groups"></div></section>
+  <section id="heroes"><h2>Heroes (figure + portrait)</h2><div id="hero-groups"></div></section>
+  <section id="spells"><h2>Spells (icon + effect)</h2><div class="grid" id="spell-grid"></div></section>
+  <section id="artifacts"><h2>Artifacts</h2><div class="grid" id="artifact-grid"></div></section>
+  <section id="misc"><h2>Skills, resources, stats</h2><div class="grid" id="misc-grid"></div></section>
+  <section id="battlefields"><h2>Battlefields</h2><div class="grid" id="bf-grid"></div></section>
+</main>
+<script type="module">
+import { initDuelyst, getDuelystSprite, getAnimationInfo, getPortraitCanvas, getBattlefieldLayers, hasDuelystSprite } from './src/gfx/duelyst/index.js';
+import * as M from './src/gfx/duelyst/mapping.js';
+import { CREATURES } from './src/data/creatures.js';
+import { HEROES } from './src/data/heroes.js';
+import { SPELLS } from './src/data/spells.js';
+import { ARTIFACTS } from './src/data/artifacts.js';
+import { SKILL_IDS } from './src/data/skills.js';
+import { TERRAIN_DATA } from './src/data/terrain.js';
+
+const el = (tag, cls, text) => { const e = document.createElement(tag); if (cls) e.className = cls; if (text != null) e.textContent = text; return e; };
+const animated = []; // { canvas, kind, id, state, opts, frames }
+
+function animCanvas(kind, id, state, opts, w, h) {
+  const view = el('canvas'); view.width = w; view.height = h;
+  const info = getAnimationInfo(kind, id, state);
+  animated.push({ view, kind, id, state, opts, frames: info ? info.frames : 1 });
+  return view;
+}
+
+function cell(name, sub, children, wide) {
+  const c = el('div', wide ? 'cell wide' : 'cell');
+  const row = el('div', 'row');
+  for (const ch of children) row.append(ch);
+  c.append(row, el('div', 'n', name));
+  if (sub) c.append(el('div', 'u', sub));
+  return c;
+}
+
+function refLabel(ref) {
+  if (!ref) return 'procedural fallback';
+  const base = ref.unit || ref.icon || ref.fx || ref.image || '';
+  return base + (ref.tint ? ` + tint ${ref.tint}` : '') + (ref.scale ? ` x${ref.scale}` : '');
+}
+
+function staticSprite(kind, id, size) {
+  const c = getDuelystSprite(kind, id, { size });
+  if (c) return c;
+  return el('span', 'fallback', 'fallback');
+}
+
+function buildCreatures() {
+  const root = document.getElementById('creature-groups');
+  const groups = new Map();
+  for (const c of CREATURES) { if (!groups.has(c.faction)) groups.set(c.faction, []); groups.get(c.faction).push(c); }
+  for (const [faction, list] of groups) {
+    root.append(el('h3', null, faction));
+    const g = el('div', 'grid'); root.append(g);
+    for (const c of list) {
+      const ref = M.CREATURE_SPRITES[c.id];
+      const w = c.size === 2 ? 96 : 48;
+      const kids = ['idle', 'attack', 'dead'].map((s) => animCanvas('creature', c.id, s, { size: 48 }, w, 48));
+      g.append(cell(`${c.id}${c.upgraded ? ' +' : ''}`, refLabel(ref), kids, c.size === 2));
+    }
+  }
+}
+
+function buildHeroes() {
+  const root = document.getElementById('hero-groups');
+  const groups = new Map();
+  for (const h of HEROES) { if (!groups.has(h.classId)) groups.set(h.classId, []); groups.get(h.classId).push(h); }
+  for (const [cls, list] of groups) {
+    root.append(el('h3', null, cls));
+    const g = el('div', 'grid'); root.append(g);
+    for (const h of list) {
+      const fig = animCanvas('hero', h.id, 'idle', { size: 56, playerColor: 'red' }, 56, 56);
+      const p = getPortraitCanvas(h.id, 56) || el('span', 'fallback', 'no portrait');
+      const pr = M.HERO_PORTRAITS[h.id];
+      g.append(cell(h.id, `${refLabel(M.HERO_SPRITES[h.id])} | ${pr ? pr.image.replace('profile_icons/', '') + ' v' + pr.variant : ''}`, [fig, p]));
+    }
+  }
+}
+
+function buildSpells() {
+  const g = document.getElementById('spell-grid');
+  for (const s of SPELLS) {
+    const fx = animCanvas('effect', s.id, 'idle', { size: 64 }, 64, 64);
+    g.append(cell(s.id, `${s.school} ${s.category} | ${refLabel(M.resolveSprite('effect', s.id))}`, [staticSprite('spell', s.id, 48), fx]));
+  }
+}
+
+function buildArtifacts() {
+  const g = document.getElementById('artifact-grid');
+  for (const a of ARTIFACTS) g.append(cell(a.id, `${a.slot} | ${refLabel(M.ARTIFACT_ICONS[a.id])}`, [staticSprite('artifact', a.id, 48)]));
+}
+
+function buildMisc() {
+  const g = document.getElementById('misc-grid');
+  for (const id of SKILL_IDS) g.append(cell(`skill: ${id}`, refLabel(M.resolveSprite('skill', id)), [staticSprite('skill', id, 44)]));
+  for (const id of ['gold', 'wood', 'ore', 'mercury', 'sulfur', 'crystal', 'gems']) g.append(cell(`resource: ${id}`, refLabel(M.resolveSprite('resource', id)), [staticSprite('resource', id, 40)]));
+  for (const id of Object.keys(M.STAT_ICONS)) g.append(cell(`stat: ${id}`, refLabel(M.resolveSprite('stat', id)), [staticSprite('stat', id, 40)]));
+}
+
+function buildBattlefields() {
+  const g = document.getElementById('bf-grid');
+  for (const t of TERRAIN_DATA) {
+    const L = getBattlefieldLayers(t.id);
+    const stack = el('div', 'stack');
+    for (const src of [L.background, L.midground, ...L.foreground]) { const i = el('img'); i.src = src; i.loading = 'lazy'; stack.append(i); }
+    const c = el('div', 'cell bf'); c.append(stack, el('div', 'n', `${t.id} -> ${t.battlefield}`), el('div', 'u', L.midground));
+    g.append(c);
+  }
+}
+
+let t0 = performance.now();
+function loop(now) {
+  const t = (now - t0) / 1000;
+  const run = document.getElementById('anim').checked;
+  for (const a of animated) {
+    const r = a.view.getBoundingClientRect();
+    if (r.bottom < -50 || r.top > innerHeight + 50) continue;
+    const frame = run ? Math.floor(t * 10) % Math.max(1, a.frames + (a.state === 'idle' ? 0 : 6)) : 0;
+    const f = Math.min(frame, a.frames - 1);
+    const c = getDuelystSprite(a.kind, a.id, { ...a.opts, state: a.state, frame: f, box: { w: a.view.width, h: a.view.height, ax: a.view.width / 2, ay: a.kind === 'effect' ? a.view.height / 2 : a.view.height * 0.92 } });
+    const g = a.view.getContext('2d');
+    g.clearRect(0, 0, a.view.width, a.view.height);
+    if (c) g.drawImage(c, 0, 0);
+  }
+  requestAnimationFrame(loop);
+}
+
+const status = document.getElementById('status');
+try {
+  await initDuelyst({ onProgress: (d, n) => { status.textContent = `manifests ${d}/${n}`; } });
+  buildCreatures(); buildHeroes(); buildSpells(); buildArtifacts(); buildMisc(); buildBattlefields();
+  const cov = M.mappingCoverage();
+  status.textContent = Object.entries(cov).map(([k, v]) => `${k} ${v.mapped}/${v.total}`).join(' | ');
+  requestAnimationFrame(loop);
+} catch (err) {
+  status.textContent = `failed: ${err.message} (serve the project root, e.g. npm start)`;
+  console.error(err);
+}
+</script>
+</body>
+</html>

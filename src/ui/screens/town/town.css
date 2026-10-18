@@ -1,0 +1,150 @@
+/* Town screen + town dialogs (prefix town-). Loaded by src/ui/screens/town/dialogUtil.js. */
+
+/* faction tints for the procedural backdrop */
+.town-view { --sky-top: #3f6fa8; --sky-bottom: #b7d3ea; --hill: #4f7a3a; --ground: #6d8f45; }
+.town-bg-castle { --hill: #4f7a3a; --ground: #74984a; }
+.town-bg-rampart { --hill: #2f6a35; --ground: #4f8a3f; --sky-bottom: #cde7d0; }
+.town-bg-tower { --sky-top: #6b8fc4; --sky-bottom: #e8f1fb; --hill: #c9d6e2; --ground: #e6edf3; }
+.town-bg-inferno { --sky-top: #3a0d07; --sky-bottom: #b4471d; --hill: #4a1a10; --ground: #6b2a14; }
+.town-bg-necropolis { --sky-top: #1d1b2b; --sky-bottom: #5a5a6e; --hill: #39352f; --ground: #57503f; }
+.town-bg-dungeon { --sky-top: #0f0b14; --sky-bottom: #3b2c48; --hill: #2a2230; --ground: #423646; }
+.town-bg-stronghold { --sky-top: #9a6b3a; --sky-bottom: #e7c48b; --hill: #7a5634; --ground: #a17a4a; }
+.town-bg-fortress { --sky-top: #3e5a46; --sky-bottom: #a7bfa0; --hill: #3d5234; --ground: #546b3c; }
+.town-bg-conflux { --sky-top: #3a2f7a; --sky-bottom: #b7a6f0; --hill: #5a4f9a; --ground: #7d72b8; }
+.town-bg-cove { --sky-top: #24678a; --sky-bottom: #a9e1ef; --hill: #3d7a6a; --ground: #c8b47a; }
+.town-bg-factory { --sky-top: #5a5040; --sky-bottom: #d6b98a; --hill: #6b5a40; --ground: #8f7a55; }
+
+.town { position: absolute; inset: 0; background: var(--stone-tex); color: var(--text); font-family: var(--font); }
+.town-view-wrap { position: absolute; left: 0; top: 0; width: 1000px; height: 468px; overflow: hidden; border-right: 2px solid var(--gold-0); border-bottom: 2px solid var(--gold-0); }
+.town-view { position: absolute; left: 0; top: 0; transform-origin: 0 0; }
+.town-backdrop { position: absolute; inset: 0; overflow: hidden; }
+.town-sky { position: absolute; inset: 0; background: linear-gradient(180deg, var(--sky-top), var(--sky-bottom) 70%); }
+.town-hills { position: absolute; left: -10%; right: -10%; top: 38%; height: 40%; border-radius: 50% 50% 0 0; background: var(--hill); opacity: 0.85;
+  box-shadow: 260px -30px 0 -20px var(--hill), -240px -20px 0 -30px var(--hill); }
+.town-ground { position: absolute; left: 0; right: 0; bottom: 0; height: 38%; background: linear-gradient(180deg, var(--ground), rgba(0, 0, 0, 0.35)); }
+.town-bld { position: absolute; display: flex; align-items: flex-end; justify-content: center; cursor: pointer; border-radius: 4px; }
+.town-bld canvas { max-width: 100%; max-height: 100%; filter: drop-shadow(0 2px 2px rgba(0, 0, 0, 0.6)); }
+.town-bld-name { position: absolute; left: 50%; bottom: -14px; transform: translateX(-50%); white-space: nowrap; font-size: 11px; padding: 1px 6px;
+  background: rgba(0, 0, 0, 0.75); color: var(--gold-3); border-radius: 3px; opacity: 0; pointer-events: none; transition: opacity 0.12s; }
+.town-bld:hover, .town-bld.is-hover { outline: 2px solid rgba(255, 242, 184, 0.9); box-shadow: 0 0 16px rgba(255, 230, 140, 0.75); z-index: 900 !important; }
+.town-bld:hover .town-bld-name, .town-bld.is-hover .town-bld-name { opacity: 1; }
+.town-bld:hover canvas, .town-bld.is-hover canvas { filter: brightness(1.2) drop-shadow(0 0 6px rgba(255, 240, 180, 0.9)); }
+
+.town-scenery { position: absolute; left: 0; top: 0; z-index: 2; pointer-events: none; }
+.town-ambience { z-index: 4; }
+.town-site { position: absolute; border-radius: 6px; cursor: pointer; border: 2px dashed transparent; transition: border-color 0.15s, background 0.15s; }
+.town-site:hover { border-color: rgba(255, 236, 170, 0.55); background: rgba(255, 236, 170, 0.08); z-index: 800 !important; }
+.town-site-name { position: absolute; left: 50%; bottom: 4px; transform: translateX(-50%); white-space: nowrap; font-size: 11px; padding: 1px 6px;
+  background: rgba(0, 0, 0, 0.7); color: var(--text-dim); border-radius: 3px; opacity: 0; pointer-events: none; transition: opacity 0.15s; }
+.town-site:hover .town-site-name { opacity: 1; }
+.town-side { position: absolute; left: 1002px; top: 0; width: 278px; height: 468px; padding: 8px; box-sizing: border-box; display: flex; flex-direction: column; gap: 6px; overflow: hidden; }
+.town-name-row { display: flex; gap: 8px; align-items: center; }
+.town-name { font-size: 20px; color: var(--gold-3); }
+.town-sub { font-size: 12px; color: var(--text-dim); }
+.town-built-today { color: var(--warn); }
+.town-income { font-size: 13px; }
+.town-growth-title { margin-top: 4px; font-size: 13px; color: var(--gold-2); border-bottom: 1px solid var(--gold-0); }
+.town-growth { flex: 1; overflow: auto; display: flex; flex-direction: column; gap: 3px; }
+.town-growth-pic { flex: 0 0 auto; width: 40px; height: 40px; display: flex; align-items: flex-end; justify-content: center; overflow: hidden;
+  border: 1px solid #000; border-radius: 3px; box-shadow: 0 0 0 1px var(--gold-0); background: radial-gradient(circle at 50% 75%, #4a3c28, #16110b 80%); }
+.town-growth-row.is-unbuilt { cursor: default; opacity: 0.55; }
+.town-growth-row.is-unbuilt .town-growth-pic canvas { filter: grayscale(1) brightness(0.7); }
+.town-growth-row.is-unbuilt .town-growth-name { color: var(--text-dim); }
+.town-growth-row { display: flex; gap: 6px; align-items: center; padding: 2px 4px; cursor: pointer; border-radius: 3px; background: rgba(0, 0, 0, 0.25); }
+.town-growth-row:hover { background: rgba(201, 161, 63, 0.18); }
+.town-growth-name { font-size: 13px; color: var(--gold-3); }
+.town-growth-num { font-size: 11px; color: var(--text-dim); }
+.town-growth-empty { color: var(--text-faint); font-style: italic; }
+
+.town-bottom { position: absolute; left: 0; right: 0; top: 470px; height: 212px; display: flex; gap: 10px; padding: 8px; box-sizing: border-box; }
+.town-armies { display: flex; flex-direction: column; gap: 4px; }
+.town-army-line { display: flex; align-items: center; gap: 8px; }
+.town-army-label { width: 64px; font-size: 12px; color: var(--text-dim); }
+.town-army-swap { margin-left: 18px; }
+.town-portrait-slot { width: 66px; height: 66px; display: flex; align-items: center; justify-content: center; border: 1px solid var(--gold-0); background: rgba(0, 0, 0, 0.35); }
+.town-portrait-empty { color: var(--text-faint); }
+.town-actions { flex: 1; display: grid; grid-template-columns: repeat(3, 1fr); gap: 6px; align-content: start; }
+.town-resbar { position: absolute; left: 0; right: 0; bottom: 0; height: 36px; }
+.town-missing, .hero-missing, .kng-missing { position: absolute; inset: 0; display: flex; align-items: center; justify-content: center; }
+
+/* ---- dialogs ---- */
+.town-dlg .k-dlg-body { max-height: 600px; overflow: auto; }
+.town-hall-head { margin-bottom: 6px; color: var(--gold-3); }
+.town-hall-note { color: var(--warn); font-size: 12px; }
+.town-hall-grid { display: grid; grid-template-columns: repeat(6, 1fr); gap: 6px; }
+.town-hall-card { display: flex; flex-direction: column; align-items: center; padding: 4px; cursor: pointer; border: 2px solid #000; border-radius: 4px; background: rgba(0, 0, 0, 0.3); }
+.town-hall-card:hover { box-shadow: 0 0 8px var(--gold-2); }
+.town-hall-name { font-size: 12px; text-align: center; color: var(--gold-3); }
+.town-hall-status { font-size: 10px; text-align: center; }
+.town-hall-card.is-available { border-color: #3c8a2a; }
+.town-hall-card.is-built { border-color: var(--gold-1); opacity: 0.75; }
+.town-hall-card.is-built-this-turn, .town-hall-card.is-not-enough-resources { border-color: #8a7a2a; }
+.town-hall-card.is-missing-requirements, .town-hall-card.is-no-water, .town-hall-card.is-capitol-exists, .town-hall-card.is-no-grail { border-color: #8a2a22; }
+.town-bdetail-top { display: flex; gap: 12px; }
+.town-bdetail-req { margin: 6px 0; }
+.town-bdetail-status.is-available { color: var(--good); }
+.town-bdetail-status { color: var(--warn); margin-top: 6px; }
+.town-binfo-head, .town-spellinfo-head { display: flex; align-items: center; gap: 8px; }
+.town-binfo { max-width: 320px; }
+
+.town-recruit-body { display: flex; flex-direction: column; gap: 8px; }
+.town-recruit-picks { display: flex; gap: 10px; justify-content: center; }
+.town-recruit-pick { display: flex; flex-direction: column; align-items: center; padding: 6px; border: 2px solid #000; border-radius: 4px; cursor: pointer; }
+.town-recruit-pick.is-selected { border-color: var(--gold-3); box-shadow: 0 0 10px rgba(255, 242, 184, 0.5); }
+.town-recruit-info { display: flex; flex-direction: column; gap: 6px; }
+.town-fort-grid { display: grid; grid-template-columns: repeat(4, 1fr); gap: 8px; }
+.town-fort-card { display: flex; flex-direction: column; align-items: center; gap: 2px; padding: 6px; border: 1px solid var(--gold-0); border-radius: 4px; cursor: pointer; background: rgba(0, 0, 0, 0.3); }
+.town-fort-card:hover { box-shadow: 0 0 8px var(--gold-2); }
+.town-fort-name { color: var(--gold-3); }
+.town-fort-line { font-size: 12px; }
+
+.town-market-cols { display: flex; gap: 12px; align-items: flex-start; }
+.town-market-col-title { font-size: 12px; color: var(--gold-2); margin-bottom: 4px; }
+.town-market-res { display: grid; grid-template-columns: repeat(4, 56px); gap: 4px; }
+.town-market-cell { display: flex; flex-direction: column; align-items: center; padding: 2px; border: 1px solid #000; border-radius: 3px; cursor: pointer; background: rgba(0, 0, 0, 0.25); }
+.town-market-cell.is-selected { border-color: var(--gold-3); box-shadow: 0 0 8px rgba(255, 242, 184, 0.5); }
+.town-market-amt { font-size: 11px; }
+.town-market-mid { display: flex; flex-direction: column; align-items: center; gap: 4px; padding-top: 30px; }
+.town-market-summary { margin: 6px 0; color: var(--gold-3); }
+.town-tavern-offers { display: flex; gap: 16px; justify-content: center; }
+.town-tavern-offer { display: flex; flex-direction: column; align-items: center; padding: 6px; border: 2px solid #000; border-radius: 4px; cursor: pointer; }
+.town-tavern-offer.is-selected { border-color: var(--gold-3); }
+.town-tavern-detail { margin-top: 8px; }
+.town-tavern-bio { font-size: 12px; color: var(--text-dim); }
+.town-tavern-blocked { color: var(--warn); }
+.town-tavern-rumor { margin-top: 8px; font-style: italic; }
+.town-thieves-table { border-collapse: collapse; width: 100%; }
+.town-thieves-table th, .town-thieves-table td { padding: 4px 8px; border-bottom: 1px solid var(--stone-4); text-align: center; }
+.town-thieves-label { text-align: left !important; }
+.town-thieves-table tr.is-locked td { color: var(--text-faint); }
+.town-flag { display: inline-block; width: 10px; height: 10px; margin-right: 4px; border: 1px solid #000; }
+.town-guild-level { display: flex; gap: 8px; align-items: center; padding: 4px; border-bottom: 1px solid var(--stone-4); }
+.town-guild-level.is-locked { opacity: 0.5; }
+.town-guild-level-name { width: 64px; color: var(--gold-2); }
+.town-guild-spells { display: flex; gap: 6px; flex-wrap: wrap; }
+.town-guild-spell { display: flex; flex-direction: column; align-items: center; width: 80px; font-size: 11px; text-align: center; }
+.town-guild-note { font-size: 12px; color: var(--text-dim); }
+.town-smith-offers, .town-merchant-grid, .town-univ-grid, .town-altar-grid { display: flex; flex-wrap: wrap; gap: 8px; }
+.town-smith-card, .town-merchant-card, .town-univ-card, .town-altar-card { display: flex; flex-direction: column; align-items: center; gap: 4px; padding: 6px; width: 150px;
+  border: 1px solid var(--gold-0); border-radius: 4px; background: rgba(0, 0, 0, 0.3); text-align: center; }
+.town-merchant-card.is-empty { color: var(--text-faint); justify-content: center; min-height: 100px; }
+.town-merchant-res { display: inline-flex; gap: 4px; }
+.town-merchant-rescell { display: flex; align-items: center; gap: 2px; padding: 2px 4px; border: 1px solid #000; border-radius: 3px; cursor: pointer; }
+.town-merchant-rescell.is-selected { border-color: var(--gold-3); }
+.town-merchant-name { font-size: 12px; color: var(--gold-3); }
+.town-univ-card { width: 220px; }
+.town-freelance-row { display: flex; align-items: center; gap: 8px; margin-bottom: 6px; }
+.town-freelance-label { width: 120px; color: var(--gold-2); }
+.town-freelance-slots { display: flex; gap: 3px; }
+.town-freelance-slot { position: relative; width: 52px; height: 62px; display: flex; flex-direction: column; align-items: center; border: 1px solid #000; cursor: pointer; background: rgba(0, 0, 0, 0.3); font-size: 11px; }
+.town-freelance-slot.is-empty { cursor: default; }
+.town-freelance-slot.is-selected { box-shadow: inset 0 0 0 2px var(--gold-4); }
+.town-freelance-slot.is-disabled { opacity: 0.45; cursor: not-allowed; }
+.town-freelance-res { display: flex; gap: 4px; margin: 6px 0; }
+.town-stack-up { margin-top: 8px; }
+.town-ship { display: flex; flex-direction: column; align-items: center; gap: 6px; }
+.town-backdrop-img { position: absolute; left: 0; top: 0; }
+.town-bld-img { position: absolute; left: 0; top: 0; }
+.town-hall-card .spr, .town-bdetail-top .spr, .town-binfo-head .spr { width: auto !important; height: auto !important; max-width: 160px; max-height: 84px; }
+.town-bdetail-top .spr { max-width: 220px; max-height: 120px; }
+.town-thumb { border: 1px solid #000; border-radius: 3px; }

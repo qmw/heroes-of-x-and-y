@@ -1,0 +1,91 @@
+// Campaign "The Saltwind Charter", scenario 3 - Storm over Kelmar Sound. Original content.
+// Three realms around the Kelmar highlands: Cove (south-west), the Inferno fire-cult of Cinderhold
+// (north-east) and their Fortress vassals (north-west); a neutral Conflux beacon town in the
+// middle and the Sound itself in the south-east. Cell = 4x4 tiles (72 x 72).
+export default {
+  id: 'saltwind_storm_sound',
+  name: 'Storm over Kelmar Sound',
+  description: 'The wreckers and the tithe were only the first moves. The fire-priest Calid of Cinderhold has '
+    + 'bought the mire lords and means to burn the free port before winter. Bring him down - and keep Leena alive.',
+  size: 'M', players: 3, difficulty: 'hard', scale: 4, seed: 1103, decor: 0.1,
+  victory: { type: 'defeat_hero', heroIndex: 1, allowStandard: true, appliesToAi: false },
+  loss: { type: 'lose_hero', heroIndex: 0 },
+  victoryText: 'Defeat the fire-priest Calid (or defeat everyone).',
+  lossText: 'Leena falls, or you lose all towns and heroes.',
+  playerInfo: [{ slot: 0, faction: 'cove' }, { slot: 1, faction: 'inferno' }, { slot: 2, faction: 'fortress' }],
+  // in-game story events (map-wide timed events: blueprintExtras.js applyTimedEvents; players = slots)
+  events: [
+    { day: 1, players: [0], name: 'Smoke on the horizon', message: 'Black smoke rises over Kelmar. Calid\'s fire-priests are already marching on the beacon.' },
+    { day: 12, players: [0], name: 'The Beacon keepers', message: 'The keepers of the Kelmar beacon send what they can spare: a handful of oceanids and their lamp-oil money.', creatures: [{creatureId: 'oceanid', count: 12}], resources: {gold: 1500} },
+    { day: 21, players: [1], name: 'The rift opens', creatures: [{creatureId: 'horned_demon', count: 12}] },
+    { day: 21, players: [0], name: 'The rift opens', message: 'The earth splits near Cinderhold and horned demons pour out to join Calid. He grows stronger every week you wait.' },
+    { day: 28, repeat: 28, players: [2], name: 'Mire tribute', creatures: [{creatureId: 'lizard_warrior', count: 10}] },
+  ],
+  layout: [
+    'WWWWWWWWHHLLLLLLLL',
+    'WwwwwwwWhhLllllllL',
+    'WwwwwwwwhhlllllllL',
+    'WwwwwwwWhhLllllllL',
+    'WwwwwwwWhhLllllllL',
+    'WWWwWWWWhhLLLlLLLL',
+    'HhhhhhhhhhhhhhhhhH',
+    'HhHhhhhhhhhhhhHhhH',
+    'HhhhhhhhhhhhhhhhhH',
+    'HhhhhhhhhhhhhhhhhH',
+    'HhhhhhhHhhhhhhhhhH',
+    'WWWwWWWWhhhhhh~~~~',
+    'WwwwwwwWhhhhh~~~~~',
+    'WwwwwwwwhhhhS~~~~~',
+    'WwwwwwwWhhhSS~~~~~',
+    'WwwwwwwWhhhs~~~~~~',
+    'WwwwwwwWHHss~~~~~~',
+    'WWWWWWWWHHSS~~~~~~',
+  ],
+  towns: [
+    { cell: [3, 14], faction: 'cove', owner: 0, name: 'Saltwind' },
+    { cell: [14, 3], faction: 'inferno', owner: 1, name: 'Cinderhold' },
+    { cell: [3, 3], faction: 'fortress', owner: 2, name: 'Mirefang' },
+    { cell: [9, 8], faction: 'conflux', owner: null, name: 'Beaconspire' },
+  ],
+  heroes: [{ owner: 0, town: 0, defId: 'leena' }, { owner: 1, town: 1, defId: 'calid' }, { owner: 2, town: 2, defId: 'tazar' }],
+  roads: [
+    { points: ['town:0', [3, 11], [4, 9], [8, 9], 'town:3'], type: 3 },
+    { points: ['town:0', [7, 13], [10, 13]], type: 1 },
+    { points: ['town:2', [3, 5], [4, 7], [8, 7]], type: 2 },
+    { points: ['town:1', [13, 5], [13, 7], [10, 8]], type: 2 },
+    { points: ['town:3', [12, 9], [12, 11], [11, 15]], type: 1 },
+    { points: ['town:2', [7, 2], [9, 2], [10, 2], 'town:1'], type: 2 },
+  ],
+  objects: [
+    { def: 'monster', cell: [3, 11], seal: true, data: { creatureId: 'harpy', count: 14, disposition: 'aggressive' } },
+    { def: 'monster', cell: [3, 5], seal: true, data: { creatureId: 'serpent_fly', count: 18, disposition: 'aggressive' } },
+    { def: 'monster', cell: [13, 5], seal: true, data: { creatureId: 'hell_hound', count: 12, disposition: 'hostile' } },
+    { def: 'monster', cell: [10, 2], seal: true, data: { creatureId: 'efreet', count: 6, disposition: 'hostile' } },
+    { def: 'monster', cell: [7, 2], seal: true, data: { creatureId: 'wyvern', count: 8, disposition: 'hostile' } },
+    { def: 'monster', cell: [7, 13], seal: true, data: { creatureId: 'nix', count: 10, disposition: 'aggressive' } },
+    { def: 'monster', cell: [12, 11], data: { creatureId: 'sea_serpent', count: 2, disposition: 'hostile' } },
+    // home realms
+    { def: 'sawmill', cell: [1, 12] }, { def: 'ore_pit', cell: [6, 16] }, { def: 'sulfur_dune', cell: [6, 12], guard: 3000 },
+    { def: 'sawmill', cell: [16, 1] }, { def: 'ore_pit', cell: [12, 4] },
+    { def: 'sawmill', cell: [1, 1] }, { def: 'ore_pit', cell: [6, 4] },
+    { def: 'shipyard', cell: [11, 13], radius: 10 },
+    // the highlands
+    { def: 'gold_mine', cell: [1, 8], guard: 6000 }, { def: 'gold_mine', cell: [16, 8], guard: 6000 },
+    { def: 'gem_pond', cell: [6, 10], guard: 3500 }, { def: 'alchemists_lab', cell: [12, 7], guard: 3500 },
+    { def: 'hill_fort', cell: [8, 6] },
+    { def: 'arena', cell: [2, 7] },
+    { def: 'library_of_enlightenment', cell: [15, 9], guard: 9000 },
+    { def: 'tree_of_knowledge', cell: [10, 10] },
+    { def: 'temple_of_the_sea', cell: [9, 14] },
+    { def: 'prison', cell: [16, 6], guard: { creatureId: 'imp', count: 40, disposition: 'hostile' } },
+    { def: 'artifact_major', cell: [10, 1], guard: 6000 },
+    // the Sound
+    { def: 'derelict_ship', cell: [15, 15] }, { def: 'sea_chest', cell: [14, 12] }, { def: 'flotsam', cell: [16, 14] },
+  ],
+  scatter: [
+    { area: [1, 12, 6, 16], band: { min: 500, max: 2500 }, count: 4, guard: false, factions: ['cove'] },
+    { area: [11, 1, 16, 4], band: { min: 500, max: 3000 }, count: 3, factions: ['inferno'] },
+    { area: [1, 1, 6, 4], band: { min: 500, max: 3000 }, count: 3, factions: ['fortress'] },
+    { area: [1, 6, 16, 10], band: { min: 2000, max: 7000 }, count: 7 },
+  ],
+};

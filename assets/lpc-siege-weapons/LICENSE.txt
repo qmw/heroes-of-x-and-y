@@ -1,0 +1,13 @@
+[LPC] Siege Weapons
+Author: bluecarrot16 (commissioned by castelonia)
+Source (licence verified on 2026-10-14): https://opengameart.org/content/lpc-siege-weapons
+The page offers CC-BY 4.0, CC-BY 3.0, OGA-BY 3.0, GPL 3.0 and GPL 2.0. H3online uses the files under
+Creative Commons Attribution 4.0 International (CC-BY 4.0): https://creativecommons.org/licenses/by/4.0/
+(legal code: https://creativecommons.org/licenses/by/4.0/legalcode)
+
+Required attribution (shown in assets/CREDITS.md and on the in-game Credits screen):
+  "[LPC] Siege Weapons" by bluecarrot16 - https://opengameart.org/content/lpc-siege-weapons - CC-BY 4.0
+
+Files: unmodified copies of ballista.png, ballista-arm.png, wheels-bg.png, wheels-fg.png, catapult.png
+(downloaded as catapult_1.png) and cannon.png (downloaded as cannon_4.png). Changes made by H3online at run
+time: frames are cropped, layered, scaled and mirrored to fit the combat screen; no file is altered.

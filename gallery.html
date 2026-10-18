@@ -1,0 +1,244 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>H3online sprite gallery</title>
+<style>
+  :root { --bg: #1a1410; --panel: #2a2018; --gold: #d8ad45; --text: #eadfc4; }
+  body { margin: 0; background: var(--bg); color: var(--text); font: 13px/1.3 Georgia, serif; }
+  header { position: sticky; top: 0; z-index: 2; background: #120e0b; border-bottom: 2px solid var(--gold); padding: 6px 10px; }
+  h1 { font-size: 16px; margin: 0 10px 0 0; display: inline-block; color: var(--gold); }
+  .tabs button { background: var(--panel); color: var(--text); border: 1px solid #5a4630; padding: 3px 8px; margin: 2px; cursor: pointer; font: inherit; }
+  .tabs button.on { background: var(--gold); color: #1a1410; }
+  .ctl { display: inline-block; margin: 4px 10px 0 0; }
+  select, input { background: var(--panel); color: var(--text); border: 1px solid #5a4630; font: inherit; }
+  main { padding: 10px; }
+  .grid { display: flex; flex-wrap: wrap; gap: 6px; }
+  .cell { background: #3a4a30; border: 1px solid #4a3a28; padding: 3px; text-align: center; font-size: 10px; max-width: 260px; }
+  .cell.dark { background: #2a2a2a; }
+  .cell canvas { display: block; margin: 0 auto 2px; image-rendering: auto; }
+  .frames { display: flex; gap: 2px; justify-content: center; }
+  h2 { font-size: 14px; color: var(--gold); margin: 14px 0 6px; border-bottom: 1px solid #4a3a28; }
+  .note { opacity: 0.7; font-size: 11px; }
+</style>
+</head>
+<body>
+<header>
+  <h1>H3online sprite gallery</h1><span class="note">all graphics are procedural (src/gfx) - no image assets</span>
+  <div class="tabs" id="tabs"></div>
+  <span class="ctl">size <select id="size"><option>24</option><option>32</option><option>48</option><option selected>64</option><option>96</option><option>128</option></select></span>
+  <span class="ctl">state <select id="state"></select></span>
+  <span class="ctl">player <select id="pc"></select></span>
+  <span class="ctl"><label><input type="checkbox" id="frames"> show animation frames</label></span>
+  <span class="ctl"><label><input type="checkbox" id="anim" checked> animate</label></span>
+  <span class="ctl">filter <input id="filter" size="14"></span>
+  <span class="ctl note" id="stats"></span>
+</header>
+<main id="main"></main>
+<script type="module">
+import * as gfx from './src/gfx/index.js';
+import { PLAYER_COLORS, FACTIONS, TERRAINS } from './src/core/constants.js';
+import { BUILDINGS } from './src/data/buildings.js';
+import { CREATURE_BY_ID } from './src/data/creatures.js';
+import { MAP_OBJECT_BY_ID } from './src/data/mapObjects.js';
+
+const $ = (id) => document.getElementById(id);
+const KINDS = [...gfx.SPRITE_KINDS, 'map demo', 'town demo'];
+const STATES = {
+  creature: gfx.CREATURE_STATES, hero: ['idle', 'move', 'boat'], skill: ['none', 'basic', 'advanced', 'expert'],
+  ui: ['normal', 'hover', 'pressed', 'disabled', 'checked', 'move', 'attack', 'target', 'active', 'unreachable', 'next'],
+  object: ['village', 'fort', 'citadel', 'castle'], obstacle: ['intact', 'damaged', 'destroyed'],
+};
+const q = new URLSearchParams(location.search);
+let kind = KINDS.includes(q.get('kind')) ? q.get('kind') : 'creature';
+if (q.get('size')) $('size').value = q.get('size');
+$('pc').innerHTML = ['(none)', ...PLAYER_COLORS].map((c) => `<option>${c}</option>`).join('');
+$('pc').value = q.get('pc') || 'red';
+if (q.get('frames')) $('frames').checked = true;
+if (q.get('filter')) $('filter').value = q.get('filter');
+const animated = [];
+
+function copy(src, cssH) {
+  const c = document.createElement('canvas');
+  c.width = src.width; c.height = src.height;
+  c.getContext('2d').drawImage(src, 0, 0);
+  if (cssH) { c.style.height = cssH + 'px'; c.style.width = Math.round(cssH * src.width / src.height) + 'px'; }
+  return c;
+}
+
+function opts(k, id, extra = {}) {
+  const st = $('state').value;
+  const o = { size: +$('size').value, ...extra };
+  const pc = $('pc').value;
+  if (pc !== '(none)') o.playerColor = pc;
+  if (k === 'hero' && st === 'boat') o.variant = 'boat'; else if (st && st !== 'none') o.state = st;
+  if (k === 'object' && MAP_OBJECT_BY_ID[id]?.category === 'town') o.variant = extra.variant;
+  if (k === 'building') o.variant = extra.variant;
+  if (k === 'ui' && id === 'slot_empty') o.variant = extra.variant;
+  return o;
+}
+
+function cell(k, id, label, extra = {}, dark = false) {
+  const d = document.createElement('div');
+  d.className = 'cell' + (dark ? ' dark' : '');
+  const o = opts(k, id, extra);
+  const n = gfx.getFrameCount(k, id, o.state);
+  if ($('frames').checked && n > 1) {
+    const row = document.createElement('div'); row.className = 'frames';
+    for (let f = 0; f < n; f++) row.append(copy(gfx.getSprite(k, id, { ...o, frame: f })));
+    d.append(row);
+  } else {
+    const c = copy(gfx.getSprite(k, id, o));
+    d.append(c);
+    if (n > 1) animated.push({ c, k, id, o, n });
+  }
+  d.append(label || id);
+  return d;
+}
+
+function section(title) {
+  const h = document.createElement('h2'); h.textContent = title; $('main').append(h);
+  const g = document.createElement('div'); g.className = 'grid'; $('main').append(g); return g;
+}
+
+function render() {
+  const t0 = performance.now();
+  animated.length = 0;
+  $('main').innerHTML = '';
+  $('state').innerHTML = ['', ...(STATES[kind] || [])].map((s) => `<option>${s}</option>`).join('');
+  if (q.get('state')) { $('state').value = q.get('state'); q.delete('state'); }
+  $('state').onchange = render0;
+  const flt = $('filter').value.trim();
+  const keep = (id) => !flt || id.includes(flt);
+  if (kind === 'map demo') return mapDemo();
+  if (kind === 'town demo') return townDemo();
+  let ids = gfx.listIds(kind).filter(keep);
+  if (kind === 'creature') {
+    const byF = {};
+    for (const id of ids) (byF[CREATURE_BY_ID[id].faction] ??= []).push(id);
+    for (const [f, list] of Object.entries(byF)) { const g = section(f); for (const id of list) g.append(cell(kind, id, `${id}${CREATURE_BY_ID[id].size === 2 ? ' (2-hex)' : ''}`)); }
+  } else if (kind === 'building') {
+    for (const f of FACTIONS) {
+      const g = section(f);
+      for (const b of BUILDINGS.filter((b) => (b.faction === f || b.faction === 'common') && keep(b.id))) g.append(cell(kind, b.id, b.name, { variant: f }));
+    }
+  } else if (kind === 'object') {
+    const byC = {};
+    for (const id of ids) (byC[MAP_OBJECT_BY_ID[id].category] ??= []).push(id);
+    for (const [c, list] of Object.entries(byC)) {
+      const g = section(c);
+      for (const id of list) {
+        if (c === 'town') for (const f of FACTIONS) g.append(cell(kind, id, `${id} / ${f}`, { variant: f }));
+        else g.append(cell(kind, id));
+      }
+    }
+  } else if (kind === 'terrain') {
+    const g = section('base tiles (variants 0-3)');
+    for (const id of TERRAINS) for (let v = 0; v < 4; v++) g.append(cell(kind, id, `${id} v${v}`, { variant: v }));
+    const ge = section('edge fringes (state 0..7 = N,E,S,W,NE,SE,SW,NW)');
+    for (const id of TERRAINS) for (let s = 0; s < 8; s += 1) ge.append(cell(kind, id, `${id} edge ${s}`, { variant: 'edge', state: s }, true));
+    const gr = section('roads / rivers (bitmask)');
+    for (const id of ids.filter((i) => i.endsWith('_road') || i.endsWith('_river'))) for (const m of [0, 5, 10, 3, 15, 7, 255, 17]) gr.append(cell(kind, id, `${id} m${m}`, { variant: m }));
+    const go = section('magic overlays, shroud & fog');
+    for (const id of ids.filter((i) => !TERRAINS.includes(i) && !i.endsWith('_road') && !i.endsWith('_river'))) go.append(cell(kind, id, id, {}, true));
+    for (const m of [1, 2, 4, 8, 3, 16, 255]) go.append(cell(kind, 'shroud', `shroud mask ${m}`, { variant: m }));
+  } else if (kind === 'ui') {
+    const g = section('ui pieces');
+    for (const id of ids) {
+      if (id === 'path_arrow') for (let d = 0; d < 8; d++) g.append(cell(kind, id, `path ${d}`, { variant: d }, true));
+      else if (id === 'slot_empty') for (const s of ['head', 'neck', 'torso', 'ring', 'feet', 'misc']) g.append(cell(kind, id, `slot ${s}`, { variant: s }, true));
+      else g.append(cell(kind, id, id, {}, true));
+    }
+  } else if (kind === 'resource') {
+    const g = section('resources & stats');
+    for (const id of ids) {
+      if (id === 'morale' || id === 'luck') for (let v = -3; v <= 3; v++) g.append(cell(kind, id, `${id} ${v}`, { variant: v }, true));
+      else g.append(cell(kind, id, id, {}, true));
+    }
+  } else if (kind === 'obstacle') {
+    const g = section('obstacles');
+    for (const id of ids) {
+      if (['wall', 'gate', 'tower', 'keep', 'moat'].includes(id)) for (const f of ['castle', 'inferno', 'rampart', 'factory']) g.append(cell(kind, id, `${id} ${f}`, { variant: f }));
+      else g.append(cell(kind, id));
+    }
+  } else {
+    const g = section(kind);
+    for (const id of ids) g.append(cell(kind, id, id, {}, kind === 'effect' || kind === 'ui'));
+  }
+  $('stats').textContent = `${gfx.cacheStats().size} cached sprites, ${Math.round(performance.now() - t0)} ms`;
+}
+
+function mapDemo() {
+  const g = section('drawTerrainTile composition (16x12 map, blended edges, roads, river, overlay, fog)');
+  const S = +$('size').value >= 48 ? 48 : 32;
+  const W = 16, H = 12;
+  const map = [];
+  for (let y = 0; y < H; y++) for (let x = 0; x < W; x++) {
+    const d = Math.hypot(x - 5, y - 5), e = Math.hypot(x - 12, y - 7);
+    map.push(x < 2 ? 'water' : d < 3 ? 'grass' : e < 3 ? 'snow' : y > 9 ? 'sand' : x > 13 ? 'lava' : y < 2 ? 'swamp' : 'dirt');
+  }
+  const at = (x, y) => (x < 0 || y < 0 || x >= W || y >= H ? null : map[y * W + x]);
+  const road = (x, y) => y === 6 && x >= 3 && x <= 13 || x === 8 && y >= 2 && y <= 6;
+  const river = (x, y) => x === 10 && y >= 8;
+  const c = document.createElement('canvas'); c.width = W * S; c.height = H * S;
+  const ctx = c.getContext('2d');
+  for (let y = 0; y < H; y++) for (let x = 0; x < W; x++) {
+    const nb = gfx.DIRS8.map(([dx, dy]) => at(x + dx, y + dy));
+    gfx.drawTerrainTile(ctx, x * S, y * S, S, {
+      terrain: at(x, y), seed: `${x},${y}`, neighbors: nb,
+      road: road(x, y) ? 'cobblestone_road' : null, roadMask: gfx.roadMask(gfx.DIRS8.map(([dx, dy]) => road(x + dx, y + dy))),
+      river: river(x, y) ? 'clear_river' : null, riverMask: gfx.roadMask(gfx.DIRS8.slice(0, 4).map(([dx, dy]) => river(x + dx, y + dy))),
+      overlay: x === 4 && y === 4 ? 'magic_plains' : null,
+    });
+  }
+  const obj = (id, tx, ty, o = {}) => { const s = gfx.getSprite('object', id, { size: S, ...o }); const i = gfx.getObjectSpriteInfo(id, S); ctx.drawImage(s, (tx - i.entranceX) * S, (ty - i.entranceY) * S); };
+  obj('town', 6, 5, { variant: 'castle', state: 'castle', playerColor: 'red' });
+  obj('gold_mine', 12, 4, { playerColor: 'blue' });
+  obj('windmill', 3, 9);
+  obj('pine_trees_2x2', 14, 3);
+  obj('resource_gold', 9, 7);
+  obj('monolith_two_way_green', 2, 9);
+  const hero = gfx.getSprite('hero', 'christian', { size: S, playerColor: 'red' });
+  ctx.drawImage(hero, 9 * S, 5 * S);
+  for (const [x, d] of [[10, 1], [11, 1]]) ctx.drawImage(gfx.getSprite('ui', 'path_arrow', { size: S, variant: d }), x * S, 6 * S);
+  ctx.drawImage(gfx.getSprite('ui', 'path_dest', { size: S }), 12 * S, 6 * S);
+  for (let y = 0; y < H; y++) for (let x = 0; x < W; x++) {
+    if (x >= 14 && y >= 9) ctx.drawImage(gfx.getSprite('terrain', 'shroud', { size: S }), x * S, y * S);
+    else if (x === 13 && y >= 9 || y === 8 && x >= 14) ctx.drawImage(gfx.getSprite('terrain', 'shroud', { size: S, variant: gfx.roadMask(gfx.DIRS8.map(([dx, dy]) => x + dx >= 14 && y + dy >= 9)) }), x * S, y * S);
+  }
+  g.append(c);
+}
+
+function townDemo() {
+  for (const f of FACTIONS) {
+    const g = section(`${f} - getTownLayout(${f}) on the town backdrop`);
+    const c = document.createElement('canvas'); c.width = 800; c.height = 374;
+    const ctx = c.getContext('2d');
+    ctx.drawImage(gfx.getSprite('town', f), 0, 0);
+    const L = gfx.getTownLayout(f);
+    const ids = Object.keys(L).filter((id) => !/village_hall|town_hall|city_hall|^fort$|^citadel$|mage_guild_[1234]|_dwelling_\d$/.test(id));
+    ids.sort((a, b) => L[a].z - L[b].z);
+    for (const id of ids) ctx.drawImage(gfx.getSprite('building', id, { variant: f, size: L[id].h }), L[id].x, L[id].y);
+    g.append(c);
+  }
+}
+
+function render0() { render(); }
+$('tabs').innerHTML = KINDS.map((k) => `<button data-k="${k}" class="${k === kind ? 'on' : ''}">${k}</button>`).join('');
+$('tabs').onclick = (e) => { const k = e.target.dataset.k; if (!k) return; kind = k; for (const b of $('tabs').children) b.classList.toggle('on', b.dataset.k === k); render(); };
+for (const id of ['size', 'pc', 'frames']) $(id).onchange = render0;
+$('filter').oninput = render0;
+render();
+let tick = 0;
+setInterval(() => {
+  if (!$('anim').checked) return;
+  tick++;
+  for (const a of animated) {
+    const src = gfx.getSprite(a.k, a.id, { ...a.o, frame: tick % a.n });
+    const ctx = a.c.getContext('2d'); ctx.clearRect(0, 0, a.c.width, a.c.height); ctx.drawImage(src, 0, 0);
+  }
+}, 220);
+</script>
+</body>
+</html>

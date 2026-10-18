@@ -1,0 +1,199 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Asset Pack Gallery</title>
+<style>
+  :root { --bg: #15110e; --panel: #241c16; --ink: #eadfc8; --dim: #a89878; --gold: #d8ad45; }
+  body { margin: 0; background: var(--bg); color: var(--ink); font: 13px/1.35 system-ui, sans-serif; }
+  header { position: sticky; top: 0; z-index: 2; background: #0e0b09ee; padding: 8px 16px; border-bottom: 1px solid #3a2e22; display: flex; gap: 12px; flex-wrap: wrap; align-items: center; }
+  header h1 { font-size: 16px; margin: 0; color: var(--gold); }
+  header a { color: var(--dim); }
+  main { padding: 0 16px 40px; }
+  h2 { color: var(--gold); border-bottom: 1px solid #3a2e22; padding-bottom: 4px; margin-top: 28px; }
+  h3 { color: var(--dim); margin: 14px 0 6px; font-size: 13px; text-transform: uppercase; letter-spacing: .06em; }
+  table { border-collapse: collapse; }
+  td, th { border: 1px solid #3a2e22; padding: 4px 8px; text-align: left; vertical-align: top; }
+  th { color: var(--gold); }
+  a { color: #9cc4e8; }
+  .grid { display: flex; flex-wrap: wrap; gap: 6px; }
+  .cell { background: var(--panel); border: 1px solid #3a2e22; border-radius: 4px; padding: 4px; text-align: center; width: 132px; }
+  .cell.wide { width: auto; min-width: 300px; }
+  .cell canvas { image-rendering: pixelated; display: block; margin: 0 auto; }
+  .cell .n { font-size: 11px; overflow-wrap: anywhere; }
+  .cell .u { font-size: 10px; color: var(--dim); overflow-wrap: anywhere; }
+  .pair { display: flex; justify-content: center; gap: 4px; align-items: flex-end; }
+  .maps { display: flex; gap: 12px; flex-wrap: wrap; }
+  .maps canvas { border: 1px solid #3a2e22; max-width: 100%; }
+  #status { color: var(--dim); }
+</style>
+</head>
+<body>
+<header>
+  <h1>Third-party asset packs mapped onto H3online</h1>
+  <span id="status">loading manifest...</span>
+  <a href="#packs">packs</a><a href="#terrain">terrain</a><a href="#machines">war machines</a><a href="#artifacts">artifacts</a>
+  <a href="#resources">resources</a><a href="#sound">sound</a>
+</header>
+<main>
+  <section id="packs"><h2>Packs and licences</h2><table id="pack-table"></table>
+    <p>Spec: <code>docs/mechanics/asset-packs.md</code>. Credits: <code>assets/CREDITS.md</code>. Left = pack art, right = what the game draws without the packs (Duelyst stand-in or procedural).</p></section>
+  <section id="terrain"><h2>Terrain (textured vs procedural)</h2><div class="maps" id="terrain-maps"></div>
+    <h3>Base tiles</h3><div class="grid" id="terrain-grid"></div></section>
+  <section id="machines"><h2>War machines (idle / shoot, both facings; right = without packs)</h2><div class="grid" id="machine-grid"></div></section>
+  <section id="artifacts"><h2>Artifacts (pack | without packs)</h2><div class="grid" id="artifact-grid"></div></section>
+  <section id="resources"><h2>Resources (pack | without packs)</h2><div class="grid" id="resource-grid"></div></section>
+  <section id="sound"><h2>Sound</h2><div id="sound-list"></div></section>
+</main>
+<script type="module">
+import * as gfx from './src/gfx/index.js';
+import { PACKS } from './src/gfx/packs/registry.js';
+import * as M from './src/gfx/packs/mapping.js';
+import { getPackSfxUrl } from './src/gfx/packs/index.js';
+import { TERRAIN_DATA } from './src/data/terrain.js';
+
+const el = (tag, cls, text) => { const e = document.createElement(tag); if (cls) e.className = cls; if (text != null) e.textContent = text; return e; };
+const $ = (id) => document.getElementById(id);
+const redraws = [];
+
+/** Draw a sprite with packs on or off into a fresh canvas (re-drawn when async art arrives). */
+function spriteCanvas(kind, id, opts, packs) {
+  const c = el('canvas');
+  const draw = () => {
+    gfx.setUsePacks(packs);
+    let s;
+    try { s = gfx.getSprite(kind, id, opts); } finally { gfx.setUsePacks(true); }
+    c.width = s.width; c.height = s.height;
+    const g = c.getContext('2d');
+    g.clearRect(0, 0, c.width, c.height);
+    g.drawImage(s, 0, 0);
+  };
+  draw();
+  redraws.push(draw);
+  return c;
+}
+
+function cell(name, sub, canvases, wide) {
+  const d = el('div', `cell${wide ? ' wide' : ''}`);
+  const p = el('div', 'pair');
+  for (const c of canvases) p.append(c);
+  d.append(p, el('div', 'n', name));
+  if (sub) d.append(el('div', 'u', sub));
+  return d;
+}
+
+// ---- packs table
+const t = $('pack-table');
+t.innerHTML = '<tr><th>pack</th><th>author</th><th>licence</th><th>used for</th><th>attribution</th></tr>';
+for (const p of PACKS) {
+  const tr = el('tr');
+  const a = el('a', null, p.name); a.href = p.url; a.target = '_blank';
+  const td = el('td'); td.append(a, el('div', 'u', `assets/${p.id}/`));
+  tr.append(td, el('td', null, p.author), el('td', null, p.license), el('td', null, p.usedFor), el('td', null, p.attribution || '-'));
+  t.append(tr);
+}
+
+// ---- terrain demo maps: every terrain as a blob with neighbours, a river and a road
+const TER = TERRAIN_DATA.map((x) => x.id);
+const D8 = [[0, -1], [1, 0], [0, 1], [-1, 0], [1, -1], [1, 1], [-1, 1], [-1, -1]];
+const W = 24; const H = 14; const TS = 32;
+const grid = [];
+for (let y = 0; y < H; y++) {
+  grid.push([]);
+  for (let x = 0; x < W; x++) {
+    const i = Math.floor(x / 4) + 6 * Math.floor(y / 7);
+    let tt = TER[i % TER.length];
+    if ((x * 7 + y * 3) % 11 === 0) tt = TER[(i + 1) % TER.length];
+    grid[y].push(tt);
+  }
+}
+const at = (x, y) => (grid[y] && grid[y][x]) || null;
+function terrainMap(packs) {
+  const c = el('canvas');
+  c.width = W * TS; c.height = H * TS;
+  const g = c.getContext('2d');
+  const draw = () => {
+    gfx.setUsePacks(packs);
+    try {
+      for (let y = 0; y < H; y++) for (let x = 0; x < W; x++) {
+        const road = y === 10 && x > 1 && x < 22 ? 2 : 0;
+        const river = x === 13 && y < 9 ? 1 : 0;
+        gfx.drawTerrainTile(g, x * TS, y * TS, TS, {
+          terrain: at(x, y), seed: `${x},${y},0`, neighbors: D8.map(([dx, dy]) => at(x + dx, y + dy)),
+          road, roadMask: road ? (x > 2 ? 8 : 0) | (x < 21 ? 2 : 0) : 0, river, riverMask: river ? (y > 0 ? 1 : 0) | (y < 8 ? 4 : 0) : 0,
+        });
+      }
+    } finally { gfx.setUsePacks(true); }
+  };
+  draw();
+  redraws.push(draw);
+  const d = el('div'); d.append(c, el('div', 'u', packs ? 'with packs' : 'procedural'));
+  return d;
+}
+
+// ---- war machines (animated)
+const machineCells = [];
+function machines() {
+  for (const id of [...Object.keys(M.UNIT_SHEETS), ...M.SKIP_DUELYST.creature]) {
+    for (const facing of [1, -1]) {
+      const cs = ['idle', 'shoot'].map((state) => {
+        const c = el('canvas');
+        machineCells.push({ c, id, state, facing });
+        return c;
+      });
+      cs.push(spriteCanvas('creature', id, { size: 72, facing }, false));
+      $('machine-grid').append(cell(`${id} ${facing > 0 ? '→' : '←'}`, M.UNIT_SHEETS[id] ? 'lpc-siege-weapons' : 'procedural (Duelyst stand-in skipped)', cs, true));
+    }
+  }
+}
+let frame = 0;
+setInterval(() => {
+  frame++;
+  for (const m of machineCells) {
+    const s = gfx.getSprite('creature', m.id, { size: 72, facing: m.facing, state: m.state, frame: frame % 8 });
+    m.c.width = s.width; m.c.height = s.height;
+    const g = m.c.getContext('2d');
+    g.clearRect(0, 0, s.width, s.height);
+    g.drawImage(s, 0, 0);
+  }
+}, 140);
+
+async function main() {
+  try {
+    await gfx.initDuelyst().catch(() => null);
+    const r = await gfx.initArtPacks();
+    $('status').textContent = `${r.files} pack files, ${r.units} war-machine sheets`;
+  } catch (err) {
+    $('status').textContent = `packs unavailable: ${err.message}`;
+  }
+  gfx.onSpriteReady(() => { for (const f of redraws) f(); });
+  $('terrain-maps').append(terrainMap(true), terrainMap(false));
+  for (const id of Object.keys(M.TERRAIN_TEXTURES)) {
+    $('terrain-grid').append(cell(id, M.TERRAIN_TEXTURES[id].file.replace(/^.*\//, ''), [
+      spriteCanvas('terrain', id, { size: 64, variant: 0 }, true), spriteCanvas('terrain', id, { size: 64, variant: 0 }, false)]));
+  }
+  machines();
+  const artifactIds = [...Object.keys(M.ARTIFACT_ICONS), ...M.SKIP_DUELYST.artifact];
+  for (const id of artifactIds) {
+    const ref = M.resolvePackRef('artifact', id);
+    $('artifact-grid').append(cell(id, ref ? (ref.file || ref.layers.find((l) => !/wheels/.test(l))).replace(/\.png$/, '') + (ref.tint ? ` ${ref.tint}` : '') : 'procedural',
+      [spriteCanvas('artifact', id, { size: 48 }, true), spriteCanvas('artifact', id, { size: 48 }, false)]));
+  }
+  for (const id of Object.keys(M.RESOURCE_ICONS)) {
+    for (const size of [24, 48]) {
+      $('resource-grid').append(cell(`${id} ${size}px`, M.RESOURCE_ICONS[id].file, [
+        spriteCanvas('resource', id, { size }, true), spriteCanvas('resource', id, { size }, false)]));
+    }
+  }
+  for (const [ev, rel] of Object.entries(M.PACK_SFX)) {
+    const d = el('div');
+    const a = el('audio'); a.controls = true; a.src = getPackSfxUrl(ev);
+    d.append(el('b', null, `${ev}: `), el('code', null, rel), a);
+    $('sound-list').append(d);
+  }
+}
+main();
+</script>
+</body>
+</html>

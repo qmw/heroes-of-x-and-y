@@ -1,0 +1,11 @@
+Fantasy Sound Effects Library
+Author: Little Robot Sound Factory - www.littlerobotsoundfactory.com
+Source (licence verified on 2026-10-14): https://opengameart.org/content/fantasy-sound-effects-library
+Licence: Creative Commons Attribution 3.0 Unported (CC-BY 3.0): https://creativecommons.org/licenses/by/3.0/
+(legal code: https://creativecommons.org/licenses/by/3.0/legalcode)
+
+Attribution notice requested on the page: "Attribute Little Robot Sound Factory, and provide this link where
+possible: www.littlerobotsoundfactory.com" (shown in assets/CREDITS.md and on the in-game Credits screen).
+
+Files: jingle_lose_00.mp3 = unmodified 'Fantasy Sound Library/Mp3/Jingle_Lose_00.mp3' from
+'Fantasy Sound Library.zip' (renamed to lower case). Used as the 'defeat' sound.

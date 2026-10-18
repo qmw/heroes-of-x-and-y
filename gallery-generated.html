@@ -1,0 +1,155 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Generated Art Gallery</title>
+<style>
+  :root { --bg: #15110e; --panel: #241c16; --ink: #eadfc8; --dim: #a89878; --gold: #d8ad45; }
+  body { margin: 0; background: var(--bg); color: var(--ink); font: 13px/1.35 system-ui, sans-serif; }
+  header { position: sticky; top: 0; z-index: 2; background: #0e0b09ee; padding: 8px 16px; border-bottom: 1px solid #3a2e22; display: flex; gap: 12px; flex-wrap: wrap; align-items: center; }
+  header h1 { font-size: 16px; margin: 0; color: var(--gold); }
+  header a { color: var(--dim); }
+  header label { color: var(--dim); }
+  main { padding: 0 16px 40px; }
+  h2 { color: var(--gold); border-bottom: 1px solid #3a2e22; padding-bottom: 4px; margin-top: 28px; }
+  h3 { color: var(--dim); margin: 14px 0 6px; font-size: 13px; text-transform: uppercase; letter-spacing: .06em; }
+  .grid { display: flex; flex-wrap: wrap; gap: 6px; }
+  .cell { background: var(--panel); border: 1px solid #3a2e22; border-radius: 4px; padding: 4px; text-align: center; }
+  .cell canvas { display: block; margin: 0 auto; }
+  .cell .n { font-size: 11px; overflow-wrap: anywhere; max-width: 260px; }
+  .cell .u { font-size: 10px; color: var(--dim); }
+  .pair { display: flex; justify-content: center; gap: 4px; align-items: flex-end; }
+  .town { position: relative; width: 800px; height: 374px; border: 1px solid #3a2e22; margin: 6px 0 14px; max-width: 100%; overflow: hidden; }
+  .town canvas { position: absolute; }
+  #status { color: var(--dim); }
+</style>
+</head>
+<body>
+<header>
+  <h1>Generated art (OpenAI image generation via Codex CLI)</h1>
+  <span id="status">loading manifest...</span>
+  <label><input type="checkbox" id="compare" checked> show procedural next to it</label>
+  <a href="#objects">map objects</a><a href="#maptowns">map towns</a><a href="#towns">town screens</a><a href="#buildings">buildings</a><a href="#misc">icons, units, boat</a>
+</header>
+<main>
+  <p>Spec: <code>docs/mechanics/generated-art.md</code>. Licence: <code>assets/generated/LICENSE.txt</code>
+    (generated for this project with OpenAI image generation via Codex CLI; owned by the project author).
+    Left = generated, right = procedural picture.</p>
+  <section id="objects"><h2>Adventure-map objects (32 px per tile, owner flag on flaggable ones)</h2><div id="object-groups"></div></section>
+  <section id="maptowns"><h2>Towns on the map (village / fort / citadel / castle)</h2><div class="grid" id="maptown-grid"></div></section>
+  <section id="towns"><h2>Town screens (all buildings built)</h2><div id="town-list"></div></section>
+  <section id="buildings"><h2>Buildings per faction</h2><div id="building-groups"></div></section>
+  <section id="misc"><h2>Artifacts, war machines, hero boat</h2><div class="grid" id="misc-grid"></div></section>
+</main>
+<script type="module">
+import * as gfx from './src/gfx/index.js';
+import * as G from './src/gfx/packs/generated.js';
+import { MAP_OBJECTS } from './src/data/mapObjects.js';
+import { BUILDINGS } from './src/data/buildings.js';
+
+const el = (tag, cls, text) => { const e = document.createElement(tag); if (cls) e.className = cls; if (text != null) e.textContent = text; return e; };
+const $ = (id) => document.getElementById(id);
+const redraws = [];
+let compare = true;
+
+function spriteCanvas(kind, id, opts, packs) {
+  const c = el('canvas');
+  const draw = () => {
+    gfx.setUsePacks(packs);
+    let s;
+    try { s = gfx.getSprite(kind, id, opts); } finally { gfx.setUsePacks(true); }
+    c.width = s.width; c.height = s.height;
+    const g = c.getContext('2d');
+    g.clearRect(0, 0, c.width, c.height);
+    g.drawImage(s, 0, 0);
+  };
+  draw();
+  redraws.push(draw);
+  return c;
+}
+function cell(name, sub, kind, id, opts) {
+  const d = el('div', 'cell');
+  const p = el('div', 'pair');
+  p.append(spriteCanvas(kind, id, opts, true));
+  if (compare) p.append(spriteCanvas(kind, id, opts, false));
+  d.append(p, el('div', 'n', name));
+  if (sub) d.append(el('div', 'u', sub));
+  return d;
+}
+
+function townScreen(faction) {
+  const box = el('div', 'town');
+  const layout = gfx.getTownLayout(faction);
+  const bg = spriteCanvas('town', faction, { size: 374 }, true);
+  bg.style.left = '0'; bg.style.top = '0';
+  box.append(bg);
+  // highest building of every chain, like a fully built town
+  const chains = [['village_hall', 'town_hall', 'city_hall', 'capitol'], ['fort', 'citadel', 'castle'], ['mage_guild_1', 'mage_guild_2', 'mage_guild_3', 'mage_guild_4', 'mage_guild_5']];
+  const skip = new Set(chains.flatMap((c) => c.slice(0, -1)));
+  const ids = Object.keys(layout).filter((id) => !skip.has(id) && !(BUILDINGS.find((b) => b.id === `${id}_up`)) && !(id === 'shipyard' && faction === 'necropolis'));
+  ids.sort((a, b) => layout[a].z - layout[b].z);
+  for (const id of ids) {
+    const r = layout[id];
+    const c = spriteCanvas('building', id, { size: r.h, variant: faction }, true);
+    c.style.left = `${r.x}px`; c.style.top = `${r.y}px`; c.style.width = `${r.w}px`; c.style.height = `${r.h}px`;
+    c.title = id;
+    box.append(c);
+  }
+  const wrap = el('div');
+  wrap.append(el('h3', null, faction), box);
+  return wrap;
+}
+
+function render() {
+  redraws.length = 0;
+  for (const id of ['object-groups', 'maptown-grid', 'town-list', 'building-groups', 'misc-grid']) $(id).textContent = '';
+  const cats = {};
+  for (const o of MAP_OBJECTS) {
+    if (!G.GEN_OBJECTS[o.id]) continue;
+    (cats[o.category] = cats[o.category] || []).push(o);
+  }
+  for (const [cat, list] of Object.entries(cats)) {
+    const grid = el('div', 'grid');
+    for (const o of list) {
+      const e = G.GEN_OBJECTS[o.id];
+      grid.append(cell(o.id, `${o.size.join('x')}${e.shared ? ' (town art)' : ''}`, 'object', o.id, { size: 32, playerColor: e.flag ? 'blue' : undefined }));
+    }
+    $('object-groups').append(el('h3', null, `${cat} (${list.length})`), grid);
+  }
+  for (const f of G.GEN_FACTIONS) for (const l of G.TOWN_LEVELS) {
+    $('maptown-grid').append(cell(`${f} ${l}`, null, 'object', 'town', { size: 32, variant: f, state: l, playerColor: 'red' }));
+  }
+  for (const f of G.GEN_FACTIONS) $('town-list').append(townScreen(f));
+  for (const f of G.GEN_FACTIONS) {
+    const grid = el('div', 'grid');
+    for (const b of BUILDINGS) {
+      if (b.faction && b.faction !== 'common' && b.faction !== f) continue;
+      grid.append(cell(b.id, null, 'building', b.id, { size: 80, variant: f }));
+    }
+    $('building-groups').append(el('h3', null, f), grid);
+  }
+  for (const id of Object.keys(G.GEN_ARTIFACTS)) $('misc-grid').append(cell(id, 'artifact', 'artifact', id, { size: 64 }));
+  for (const id of Object.keys(G.GEN_UNITS)) {
+    $('misc-grid').append(cell(id, 'combat, facing right', 'creature', id, { size: 96 }));
+    $('misc-grid').append(cell(id, 'facing left, owner ring', 'creature', id, { size: 96, facing: -1, playerColor: 'red' }));
+  }
+  for (const c of G.BOAT_COLORS) $('misc-grid').append(cell(`boat ${c}`, 'hero boat', 'hero', 'castle', { size: 72, variant: 'boat', playerColor: c }));
+}
+
+async function main() {
+  try {
+    await gfx.initDuelyst().catch(() => null);
+    const r = await gfx.initArtPacks();
+    $('status').textContent = `${r.files} pack files (${G.generatedFiles().length} generated; groups: ${[...G.GENERATED_KINDS].join(', ')})`;
+  } catch (err) {
+    $('status').textContent = `packs unavailable: ${err.message}`;
+  }
+  gfx.onSpriteReady(() => { for (const f of redraws) f(); });
+  $('compare').addEventListener('change', (e) => { compare = e.target.checked; render(); });
+  render();
+}
+main();
+</script>
+</body>
+</html>

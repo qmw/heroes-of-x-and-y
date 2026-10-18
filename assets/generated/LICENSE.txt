@@ -1,0 +1,16 @@
+H3online generated art
+======================
+
+Every image in this folder (assets/generated/) was generated for this project with OpenAI image
+generation via Codex CLI (https://developers.openai.com/codex/cli), from original prompts written
+for this project (tools/genart/build-prompts.mjs, tools/genart/prompts.json), and then downscaled /
+trimmed / recoloured by the project's own tools (tools/genart/resize.mjs).
+
+Licence (LicenseRef-Project-Generated):
+generated for this project with OpenAI image generation via Codex CLI; owned by the project author.
+ Per OpenAI's terms of use (https://openai.com/policies/terms-of-use) the output
+belongs to the user who generated it. The prompts ask for original high-fantasy designs only and
+never reference existing games, franchises, characters, logos or text.
+
+Not third-party art: no attribution is required. Reuse outside this project needs the project
+author's permission.

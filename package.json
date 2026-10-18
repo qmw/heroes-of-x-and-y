@@ -1,0 +1,13 @@
+{
+  "name": "h3online",
+  "version": "0.1.0",
+  "description": "Browser remake of a classic fantasy turn-based strategy game (original procedural graphics)",
+  "type": "module",
+  "private": true,
+  "scripts": {
+    "start": "node tools/serve.mjs",
+    "test": "node --test tests/",
+    "e2e": "node --experimental-websocket tools/e2e/run.mjs",
+    "e2e:session": "node --experimental-websocket tools/e2e/session.mjs"
+  }
+}

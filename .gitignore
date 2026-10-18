@@ -1,0 +1,5 @@
+node_modules/
+.genart/
+tools/e2e/out/
+*.log
+.claude/

@@ -1,0 +1,32 @@
+/* Kingdom overview (prefix kng-). */
+.kng { position: absolute; inset: 0; display: flex; flex-direction: column; gap: 8px; padding: 12px; box-sizing: border-box; background: var(--stone-tex); color: var(--text); font-family: var(--font); }
+.kng-header { display: flex; align-items: center; gap: 12px; }
+.kng-flag { width: 18px; height: 24px; border: 1px solid #000; }
+.kng-title { font-size: 22px; color: var(--gold-3); }
+.kng-main { flex: 1; min-height: 0; overflow: auto; }
+.kng-list { display: flex; flex-direction: column; gap: 6px; }
+.kng-row { display: flex; align-items: center; gap: 12px; padding: 6px; border: 1px solid var(--gold-0); border-radius: 4px; background: rgba(0, 0, 0, 0.3); }
+.kng-hero-info, .kng-town-info { width: 230px; }
+.kng-name { color: var(--gold-3); font-size: 15px; }
+.kng-sub { font-size: 12px; color: var(--text-dim); }
+.kng-row-btns { margin-left: auto; display: flex; flex-direction: column; gap: 4px; }
+.kng-growth { display: flex; flex-wrap: wrap; gap: 4px; width: 300px; }
+.kng-growth-cell { display: flex; align-items: center; gap: 2px; font-size: 11px; }
+.kng-table { border-collapse: collapse; }
+.kng-table th, .kng-table td { padding: 4px 10px; border-bottom: 1px solid var(--stone-4); text-align: right; }
+.kng-table td:first-child, .kng-table th:first-child { text-align: left; }
+.kng-total td { color: var(--gold-3); font-weight: bold; }
+.kng-holdings { display: flex; gap: 40px; margin-top: 12px; }
+.kng-bottom { display: flex; align-items: center; gap: 12px; }
+.kng-bottom .k-resbar { flex: 1; }
+.kng-empty { color: var(--text-faint); font-style: italic; }
+.kng-tab { display: flex; flex-direction: column; gap: 14px; }
+.kng-list.is-roomy .kng-row { padding: 10px 12px; gap: 18px; background: linear-gradient(180deg, rgba(40, 30, 18, 0.55), rgba(0, 0, 0, 0.35)); }
+.kng-list.is-roomy .kng-name { font-size: 18px; }
+.kng-list.is-roomy .kng-sub { font-size: 13px; }
+.kng-skills { display: flex; gap: 3px; margin-top: 4px; }
+.kng-summary { display: flex; gap: 12px; padding: 12px; border: 1px solid var(--gold-0); border-radius: 4px;
+  background: linear-gradient(180deg, rgba(60, 46, 26, 0.45), rgba(0, 0, 0, 0.35)); }
+.kng-sum-cell { flex: 1; display: flex; flex-direction: column; align-items: center; gap: 4px; padding: 6px; border-right: 1px solid rgba(232, 200, 112, 0.18); }
+.kng-sum-cell:last-child { border-right: none; }
+.kng-sum-value { font-size: 20px; color: var(--gold-3); }

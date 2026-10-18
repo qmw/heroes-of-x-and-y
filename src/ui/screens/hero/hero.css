@@ -1,0 +1,47 @@
+/* Hero screen, level-up, hero exchange and spell book dialogs (prefix hero-). */
+.hero { position: absolute; inset: 0; display: flex; gap: 12px; padding: 12px; box-sizing: border-box; background: var(--stone-tex); color: var(--text); font-family: var(--font); }
+.hero-left { width: 440px; display: flex; flex-direction: column; gap: 10px; }
+.hero-right { flex: 1; display: flex; flex-direction: column; gap: 10px; }
+.hero-head { display: flex; gap: 12px; align-items: flex-start; }
+.hero-head-text { flex: 1; display: flex; flex-direction: column; gap: 3px; }
+.hero-name { font-size: 24px; color: var(--gold-3); }
+.hero-title { color: var(--text-dim); }
+.hero-spec { font-size: 12px; }
+.hero-primary { display: grid; grid-template-columns: repeat(4, 1fr); gap: 6px; }
+.hero-prim { display: flex; flex-direction: column; align-items: center; padding: 4px; border: 1px solid var(--gold-0); border-radius: 4px; background: rgba(0, 0, 0, 0.3); }
+.hero-prim-name { font-size: 11px; color: var(--text-dim); }
+.hero-prim-value { font-size: 20px; font-weight: bold; color: var(--gold-4); }
+.hero-prim.is-up .hero-prim-value { color: var(--good); }
+.hero-prim.is-down .hero-prim-value { color: var(--bad); }
+.hero-stats { display: flex; flex-direction: column; gap: 6px; }
+.hero-skills-title, .hero-army-title { color: var(--gold-2); border-bottom: 1px solid var(--gold-0); font-size: 13px; }
+.hero-skills { display: grid; grid-template-columns: 1fr 1fr; gap: 6px; }
+.hero-skill { min-height: 52px; display: flex; align-items: center; padding: 2px; border-radius: 3px; background: rgba(0, 0, 0, 0.25); }
+.hero-skill.is-empty { justify-content: center; color: var(--text-faint); font-size: 12px; border: 1px dashed var(--stone-4); }
+.hero-arts { display: flex; justify-content: center; }
+.hero-army { display: flex; flex-direction: column; gap: 4px; }
+.hero-buttons { display: flex; flex-wrap: wrap; gap: 6px; margin-top: auto; }
+.hero-book { display: flex; gap: 12px; }
+.hero-book-info { width: 220px; font-size: 13px; }
+.hero-quests li.is-done { color: var(--text-faint); text-decoration: line-through; }
+.hero-skill-info p { margin: 2px 0; }
+
+.hero-lvl-top { display: flex; gap: 12px; align-items: center; }
+.hero-lvl-name { color: var(--gold-3); font-size: 16px; }
+.hero-lvl-primary { display: flex; align-items: center; gap: 6px; color: var(--good); }
+.hero-lvl-pick { margin: 10px 0 4px; color: var(--gold-2); }
+.hero-lvl-choices { display: flex; gap: 12px; justify-content: center; }
+.hero-lvl-choice { width: 230px; display: flex; flex-direction: column; align-items: center; gap: 4px; padding: 8px; border: 2px solid #000; border-radius: 4px;
+  background: rgba(0, 0, 0, 0.3); color: var(--text); font-family: var(--font); cursor: pointer; }
+.hero-lvl-choice.is-selected { border-color: var(--gold-3); box-shadow: 0 0 12px rgba(255, 242, 184, 0.6); }
+.hero-lvl-choice-label { color: var(--gold-3); }
+.hero-lvl-choice-desc { font-size: 12px; }
+
+.hero-trade { display: flex; gap: 16px; }
+.hero-trade-side { flex: 1; display: flex; flex-direction: column; gap: 8px; align-items: center; }
+/* two paper dolls + backpacks + armies must fit the 720 px stage (the army row was clipped) */
+.hero-trade-side .k-art-grid { zoom: 0.8; }
+.hero-trade-head { display: flex; gap: 8px; align-items: center; width: 100%; }
+.hero-trade-title { flex: 1; }
+.hero-trade-skills { display: flex; flex-wrap: wrap; gap: 2px; width: 140px; }
+.hero-trade-mana { font-size: 12px; color: var(--text-dim); }

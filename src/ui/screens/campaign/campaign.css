@@ -1,0 +1,54 @@
+/* Campaign select + briefing screens (prefix cmp-). Injected by css.js. */
+.cmp { position: absolute; inset: 0; display: flex; flex-direction: column; padding: 18px 28px; gap: 10px;
+  background: radial-gradient(ellipse at 50% 0%, #2a2238 0%, #14121c 70%); color: var(--text); overflow: hidden; }
+.cmp-heading { font-size: 30px; color: var(--gold-2, #e8c060); text-shadow: 0 2px 4px #000; letter-spacing: 1px; }
+.cmp-sub { color: var(--text-dim); font-size: 14px; margin-top: -4px; }
+.cmp-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 16px; flex: 1; min-height: 0; }
+.cmp-card { display: flex; flex-direction: column; gap: 10px; padding: 14px; border: 2px solid var(--gold-3, #8a6a30);
+  border-radius: 6px; background: linear-gradient(180deg, rgba(60, 48, 30, 0.92), rgba(28, 22, 16, 0.95));
+  box-shadow: var(--shadow, 0 4px 12px rgba(0, 0, 0, 0.6)); min-height: 0; }
+.cmp-card-head { display: flex; gap: 12px; align-items: center; }
+.cmp-card-head canvas { border: 1px solid var(--gold-3, #8a6a30); border-radius: 3px; flex: none; }
+.cmp-card-title { font-size: 20px; color: var(--gold-1, #f0d890); }
+.cmp-card-hero { font-size: 12px; color: var(--text-dim); }
+.cmp-card-desc { font-size: 13px; line-height: 1.4; color: var(--text); }
+.cmp-track { display: flex; flex-direction: column; gap: 3px; flex: 1; }
+.cmp-step { display: flex; align-items: center; gap: 8px; font-size: 13px; color: var(--text-dim); }
+.cmp-step-dot { width: 18px; height: 18px; border-radius: 50%; border: 1px solid var(--gold-3, #8a6a30);
+  display: inline-flex; align-items: center; justify-content: center; font-size: 11px; flex: none; }
+.cmp-step.is-done { color: var(--good, #7c4); }
+.cmp-step.is-done .cmp-step-dot { background: rgba(110, 180, 60, 0.35); }
+.cmp-step.is-next { color: var(--gold-1, #f0d890); }
+.cmp-step.is-next .cmp-step-dot { background: rgba(230, 180, 60, 0.35); }
+.cmp-card-buttons { justify-content: flex-end; }
+.cmp-bottom { display: flex; gap: 10px; justify-content: flex-end; align-items: center; }
+.cmp-brief { display: flex; flex-direction: column; gap: 10px; height: 100%; min-height: 0; }
+.cmp-cols { display: flex; gap: 14px; flex: 1; min-height: 0; }
+.cmp-story { flex: 1; overflow-y: auto; font-size: 15px; line-height: 1.5; }
+.cmp-story p { margin: 0 0 10px; }
+.cmp-side { width: 360px; display: flex; flex-direction: column; gap: 10px; flex: none; }
+.cmp-map canvas { display: block; margin: 0 auto; border: 2px solid var(--gold-3, #8a6a30); image-rendering: pixelated; }
+.cmp-small { font-size: 12px; color: var(--text-dim); text-align: center; margin-top: 4px; }
+.cmp-hero-line { font-size: 13px; line-height: 1.35; }
+.cmp-cond { font-weight: bold; }
+.cmp-bonuses { display: flex; gap: 12px; }
+.cmp-bonus { flex: 1; display: flex; align-items: center; gap: 10px; padding: 6px 10px; cursor: pointer; font: inherit;
+  color: var(--text); background: rgba(0, 0, 0, 0.35); border: 2px solid var(--stone-3, #555); border-radius: 4px; text-align: left; }
+.cmp-bonus:hover { border-color: var(--gold-3, #8a6a30); }
+.cmp-bonus.is-selected { border-color: var(--gold-1, #f0d890); background: rgba(200, 160, 60, 0.25); box-shadow: 0 0 8px rgba(240, 200, 100, 0.5); }
+.cmp-choices { display: flex; gap: 16px; flex: 1; }
+.cmp-choice { flex: 1; display: flex; flex-direction: column; gap: 10px; padding: 16px; border: 2px solid var(--gold-3, #8a6a30);
+  border-radius: 6px; background: rgba(30, 24, 18, 0.92); }
+.cmp-choice .k-btn { align-self: flex-end; margin-top: auto; }
+.cmp-table td { padding: 2px 12px 2px 0; }
+.cmp-outro p { margin: 0 0 8px; max-width: 420px; line-height: 1.45; }
+.cmp-story .k-field-label { color: var(--ink, #2a1c10); font-weight: bold; }
+.cmp-story .cmp-cond { color: var(--ink, #2a1c10); }
+.cmp-card-title { color: var(--gold-1, #f0d890); }
+.cmp-carry-row { justify-content: center; margin-top: 4px; }
+.cmp-carry-section { margin-bottom: 10px; }
+.cmp-carry-title { font-weight: bold; margin-bottom: 4px; }
+.cmp-carry-list { display: grid; grid-template-columns: repeat(2, 1fr); gap: 6px; max-height: 260px; overflow-y: auto; }
+.cmp-pick { display: flex; align-items: center; gap: 8px; padding: 4px 8px; font: inherit; color: var(--text); cursor: pointer;
+  background: rgba(0, 0, 0, 0.35); border: 2px solid var(--stone-3, #555); border-radius: 4px; text-align: left; }
+.cmp-pick.is-selected { border-color: var(--gold-1, #f0d890); background: rgba(200, 160, 60, 0.25); }

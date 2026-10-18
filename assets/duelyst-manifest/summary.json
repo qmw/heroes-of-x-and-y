@@ -1,0 +1,38 @@
+{
+  "version": 1,
+  "source": "https://github.com/open-duelyst/duelyst (CC0-1.0)",
+  "atlases": {
+    "units": {
+      "sheets": 365,
+      "frames": 30390
+    },
+    "icons": {
+      "sheets": 175,
+      "frames": 4070
+    },
+    "fx": {
+      "sheets": 209,
+      "frames": 5246
+    },
+    "misc": {
+      "sheets": 0,
+      "frames": 0
+    }
+  },
+  "files": {
+    "generals": 2,
+    "maps": 35,
+    "profile_icons": 105,
+    "crests": 6,
+    "ui": 18,
+    "modifiers": 0,
+    "scenes": 2,
+    "card_backgrounds": 0,
+    "tiles": 3,
+    "runes": 0,
+    "particles": 0,
+    "sfx": 82,
+    "music": 22
+  },
+  "skipped": []
+}

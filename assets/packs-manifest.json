@@ -1,0 +1,2606 @@
+{
+ "version": 1,
+ "packs": {
+  "generated": {
+   "name": "H3online generated art",
+   "author": "the H3online project author (generated with OpenAI image generation via Codex CLI)",
+   "license": "LicenseRef-Project-Generated",
+   "url": "https://developers.openai.com/codex/cli",
+   "files": 194
+  },
+  "sbs-tiny-textures": {
+   "name": "Tiny Texture Pack 1, 2 and 3",
+   "author": "Screaming Brain Studios",
+   "license": "CC0-1.0",
+   "url": "https://opengameart.org/content/tiny-texture-pack-1",
+   "files": 11
+  },
+  "7soul1-rpg-icons": {
+   "name": "496 pixel art icons for medieval/fantasy RPG",
+   "author": "Henrique Lazarini (7Soul1)",
+   "license": "CC0-1.0",
+   "url": "https://opengameart.org/content/496-pixel-art-icons-for-medievalfantasy-rpg",
+   "files": 15
+  },
+  "idylwild-icons": {
+   "name": "Idylwild's Armory and Idylwild's Inventory",
+   "author": "Idylwild",
+   "license": "CC0-1.0",
+   "url": "https://opengameart.org/content/idylwilds-armory",
+   "files": 12
+  },
+  "lpc-siege-weapons": {
+   "name": "[LPC] Siege Weapons",
+   "author": "bluecarrot16 (commissioned by castelonia)",
+   "license": "CC-BY-4.0",
+   "url": "https://opengameart.org/content/lpc-siege-weapons",
+   "files": 6
+  },
+  "lrsf-fantasy-sfx": {
+   "name": "Fantasy Sound Effects Library",
+   "author": "Little Robot Sound Factory",
+   "license": "CC-BY-3.0",
+   "url": "https://opengameart.org/content/fantasy-sound-effects-library",
+   "files": 1
+  }
+ },
+ "files": {
+  "7soul1-rpg-icons/A_Armour03.png": {
+   "bytes": 3624,
+   "w": 34,
+   "h": 34,
+   "b": [
+    0,
+    0,
+    32,
+    32
+   ]
+  },
+  "7soul1-rpg-icons/A_Clothing02.png": {
+   "bytes": 3701,
+   "w": 34,
+   "h": 34,
+   "b": [
+    1,
+    2,
+    32,
+    31
+   ]
+  },
+  "7soul1-rpg-icons/A_Shoes01.png": {
+   "bytes": 3210,
+   "w": 34,
+   "h": 34,
+   "b": [
+    1,
+    4,
+    32,
+    29
+   ]
+  },
+  "7soul1-rpg-icons/A_Shoes02.png": {
+   "bytes": 3509,
+   "w": 34,
+   "h": 34,
+   "b": [
+    1,
+    4,
+    32,
+    29
+   ]
+  },
+  "7soul1-rpg-icons/A_Shoes03.png": {
+   "bytes": 3390,
+   "w": 34,
+   "h": 34,
+   "b": [
+    1,
+    4,
+    32,
+    29
+   ]
+  },
+  "7soul1-rpg-icons/A_Shoes04.png": {
+   "bytes": 3555,
+   "w": 34,
+   "h": 34,
+   "b": [
+    1,
+    4,
+    32,
+    29
+   ]
+  },
+  "7soul1-rpg-icons/A_Shoes05.png": {
+   "bytes": 3416,
+   "w": 34,
+   "h": 34,
+   "b": [
+    0,
+    4,
+    32,
+    29
+   ]
+  },
+  "7soul1-rpg-icons/A_Shoes06.png": {
+   "bytes": 3537,
+   "w": 34,
+   "h": 34,
+   "b": [
+    1,
+    4,
+    32,
+    29
+   ]
+  },
+  "7soul1-rpg-icons/A_Shoes07.png": {
+   "bytes": 3378,
+   "w": 34,
+   "h": 34,
+   "b": [
+    1,
+    4,
+    32,
+    29
+   ]
+  },
+  "7soul1-rpg-icons/I_Map.png": {
+   "bytes": 3296,
+   "w": 34,
+   "h": 34,
+   "b": [
+    1,
+    1,
+    31,
+    31
+   ]
+  },
+  "7soul1-rpg-icons/I_Telescope.png": {
+   "bytes": 3357,
+   "w": 34,
+   "h": 34,
+   "b": [
+    3,
+    3,
+    30,
+    30
+   ]
+  },
+  "7soul1-rpg-icons/W_Bow07.png": {
+   "bytes": 3326,
+   "w": 34,
+   "h": 34,
+   "b": [
+    1,
+    2,
+    31,
+    31
+   ]
+  },
+  "7soul1-rpg-icons/W_Bow08.png": {
+   "bytes": 3273,
+   "w": 34,
+   "h": 34,
+   "b": [
+    1,
+    2,
+    31,
+    31
+   ]
+  },
+  "7soul1-rpg-icons/W_Bow16.png": {
+   "bytes": 1724,
+   "w": 34,
+   "h": 34,
+   "b": [
+    0,
+    0,
+    33,
+    33
+   ]
+  },
+  "7soul1-rpg-icons/W_Gold_Bow.png": {
+   "bytes": 3657,
+   "w": 34,
+   "h": 34,
+   "b": [
+    0,
+    0,
+    33,
+    33
+   ]
+  },
+  "generated/artifact/dragon_wing_tabard.png": {
+   "bytes": 3316,
+   "w": 47,
+   "h": 64,
+   "b": [
+    0,
+    0,
+    46,
+    63
+   ]
+  },
+  "generated/artifact/spirit_of_oppression.png": {
+   "bytes": 3578,
+   "w": 57,
+   "h": 64,
+   "b": [
+    0,
+    0,
+    56,
+    63
+   ]
+  },
+  "generated/building/castle_capitol.png": {
+   "bytes": 36039,
+   "w": 256,
+   "h": 247,
+   "b": [
+    1,
+    0,
+    255,
+    246
+   ]
+  },
+  "generated/building/castle_citadel.png": {
+   "bytes": 38093,
+   "w": 384,
+   "h": 205
+  },
+  "generated/building/castle_city_hall.png": {
+   "bytes": 32241,
+   "w": 256,
+   "h": 253,
+   "b": [
+    0,
+    0,
+    255,
+    252
+   ]
+  },
+  "generated/building/castle_fort.png": {
+   "bytes": 36753,
+   "w": 384,
+   "h": 200
+  },
+  "generated/building/castle_town_hall.png": {
+   "bytes": 33734,
+   "w": 255,
+   "h": 256,
+   "b": [
+    0,
+    0,
+    254,
+    255
+   ]
+  },
+  "generated/building/castle_village_hall.png": {
+   "bytes": 32257,
+   "w": 256,
+   "h": 230,
+   "b": [
+    0,
+    0,
+    255,
+    229
+   ]
+  },
+  "generated/building/conflux_capitol.png": {
+   "bytes": 37335,
+   "w": 249,
+   "h": 256,
+   "b": [
+    0,
+    1,
+    248,
+    254
+   ]
+  },
+  "generated/building/conflux_citadel.png": {
+   "bytes": 51409,
+   "w": 384,
+   "h": 244
+  },
+  "generated/building/conflux_city_hall.png": {
+   "bytes": 31715,
+   "w": 255,
+   "h": 256,
+   "b": [
+    0,
+    0,
+    254,
+    255
+   ]
+  },
+  "generated/building/conflux_town_hall.png": {
+   "bytes": 36003,
+   "w": 254,
+   "h": 256,
+   "b": [
+    0,
+    0,
+    253,
+    255
+   ]
+  },
+  "generated/building/conflux_village_hall.png": {
+   "bytes": 34415,
+   "w": 256,
+   "h": 253,
+   "b": [
+    0,
+    0,
+    255,
+    252
+   ]
+  },
+  "generated/building/cove_capitol.png": {
+   "bytes": 36340,
+   "w": 256,
+   "h": 249,
+   "b": [
+    0,
+    0,
+    255,
+    248
+   ]
+  },
+  "generated/building/cove_city_hall.png": {
+   "bytes": 32712,
+   "w": 252,
+   "h": 256,
+   "b": [
+    0,
+    0,
+    251,
+    255
+   ]
+  },
+  "generated/building/cove_town_hall.png": {
+   "bytes": 35903,
+   "w": 255,
+   "h": 256,
+   "b": [
+    0,
+    0,
+    254,
+    255
+   ]
+  },
+  "generated/building/cove_village_hall.png": {
+   "bytes": 30841,
+   "w": 256,
+   "h": 236,
+   "b": [
+    0,
+    0,
+    255,
+    235
+   ]
+  },
+  "generated/building/dungeon_capitol.png": {
+   "bytes": 39913,
+   "w": 256,
+   "h": 256,
+   "b": [
+    0,
+    0,
+    255,
+    255
+   ]
+  },
+  "generated/building/dungeon_citadel.png": {
+   "bytes": 44685,
+   "w": 384,
+   "h": 213
+  },
+  "generated/building/dungeon_city_hall.png": {
+   "bytes": 34309,
+   "w": 255,
+   "h": 256,
+   "b": [
+    0,
+    0,
+    254,
+    255
+   ]
+  },
+  "generated/building/dungeon_fort.png": {
+   "bytes": 32979,
+   "w": 384,
+   "h": 170
+  },
+  "generated/building/dungeon_town_hall.png": {
+   "bytes": 36166,
+   "w": 256,
+   "h": 256,
+   "b": [
+    0,
+    0,
+    255,
+    255
+   ]
+  },
+  "generated/building/dungeon_village_hall.png": {
+   "bytes": 34012,
+   "w": 256,
+   "h": 228,
+   "b": [
+    0,
+    0,
+    255,
+    227
+   ]
+  },
+  "generated/building/factory_capitol.png": {
+   "bytes": 38042,
+   "w": 256,
+   "h": 253,
+   "b": [
+    0,
+    0,
+    255,
+    252
+   ]
+  },
+  "generated/building/factory_city_hall.png": {
+   "bytes": 36520,
+   "w": 256,
+   "h": 249,
+   "b": [
+    0,
+    0,
+    255,
+    248
+   ]
+  },
+  "generated/building/factory_fort.png": {
+   "bytes": 33487,
+   "w": 384,
+   "h": 177
+  },
+  "generated/building/factory_town_hall.png": {
+   "bytes": 36838,
+   "w": 256,
+   "h": 253,
+   "b": [
+    0,
+    0,
+    255,
+    252
+   ]
+  },
+  "generated/building/factory_village_hall.png": {
+   "bytes": 32619,
+   "w": 256,
+   "h": 234,
+   "b": [
+    0,
+    0,
+    255,
+    233
+   ]
+  },
+  "generated/building/fortress_capitol.png": {
+   "bytes": 37372,
+   "w": 256,
+   "h": 256,
+   "b": [
+    0,
+    0,
+    255,
+    255
+   ]
+  },
+  "generated/building/fortress_citadel.png": {
+   "bytes": 46092,
+   "w": 384,
+   "h": 209
+  },
+  "generated/building/fortress_city_hall.png": {
+   "bytes": 34402,
+   "w": 256,
+   "h": 255,
+   "b": [
+    0,
+    0,
+    255,
+    254
+   ]
+  },
+  "generated/building/fortress_fort.png": {
+   "bytes": 38063,
+   "w": 384,
+   "h": 188
+  },
+  "generated/building/fortress_town_hall.png": {
+   "bytes": 38109,
+   "w": 256,
+   "h": 254,
+   "b": [
+    0,
+    0,
+    255,
+    253
+   ]
+  },
+  "generated/building/fortress_village_hall.png": {
+   "bytes": 38344,
+   "w": 256,
+   "h": 244,
+   "b": [
+    0,
+    0,
+    255,
+    243
+   ]
+  },
+  "generated/building/inferno_capitol.png": {
+   "bytes": 35913,
+   "w": 256,
+   "h": 248,
+   "b": [
+    0,
+    0,
+    255,
+    247
+   ]
+  },
+  "generated/building/inferno_citadel.png": {
+   "bytes": 45576,
+   "w": 384,
+   "h": 214
+  },
+  "generated/building/inferno_city_hall.png": {
+   "bytes": 39113,
+   "w": 256,
+   "h": 253,
+   "b": [
+    0,
+    1,
+    255,
+    252
+   ]
+  },
+  "generated/building/inferno_fort.png": {
+   "bytes": 38346,
+   "w": 384,
+   "h": 201
+  },
+  "generated/building/inferno_town_hall.png": {
+   "bytes": 35442,
+   "w": 256,
+   "h": 253,
+   "b": [
+    0,
+    0,
+    255,
+    252
+   ]
+  },
+  "generated/building/inferno_village_hall.png": {
+   "bytes": 33211,
+   "w": 256,
+   "h": 215,
+   "b": [
+    0,
+    0,
+    255,
+    214
+   ]
+  },
+  "generated/building/necropolis_capitol.png": {
+   "bytes": 38903,
+   "w": 256,
+   "h": 255,
+   "b": [
+    0,
+    1,
+    255,
+    254
+   ]
+  },
+  "generated/building/necropolis_city_hall.png": {
+   "bytes": 36710,
+   "w": 256,
+   "h": 252,
+   "b": [
+    0,
+    0,
+    255,
+    251
+   ]
+  },
+  "generated/building/necropolis_fort.png": {
+   "bytes": 39586,
+   "w": 384,
+   "h": 193
+  },
+  "generated/building/necropolis_town_hall.png": {
+   "bytes": 32618,
+   "w": 242,
+   "h": 256,
+   "b": [
+    0,
+    0,
+    241,
+    255
+   ]
+  },
+  "generated/building/necropolis_village_hall.png": {
+   "bytes": 35732,
+   "w": 256,
+   "h": 246,
+   "b": [
+    0,
+    0,
+    255,
+    245
+   ]
+  },
+  "generated/building/rampart_capitol.png": {
+   "bytes": 39722,
+   "w": 256,
+   "h": 252,
+   "b": [
+    0,
+    0,
+    255,
+    251
+   ]
+  },
+  "generated/building/rampart_citadel.png": {
+   "bytes": 46804,
+   "w": 384,
+   "h": 218
+  },
+  "generated/building/rampart_city_hall.png": {
+   "bytes": 36521,
+   "w": 256,
+   "h": 251,
+   "b": [
+    0,
+    0,
+    255,
+    250
+   ]
+  },
+  "generated/building/rampart_fort.png": {
+   "bytes": 40977,
+   "w": 384,
+   "h": 205
+  },
+  "generated/building/rampart_town_hall.png": {
+   "bytes": 36800,
+   "w": 256,
+   "h": 254,
+   "b": [
+    0,
+    1,
+    255,
+    253
+   ]
+  },
+  "generated/building/rampart_village_hall.png": {
+   "bytes": 40390,
+   "w": 256,
+   "h": 233,
+   "b": [
+    0,
+    0,
+    255,
+    232
+   ]
+  },
+  "generated/building/stronghold_capitol.png": {
+   "bytes": 37992,
+   "w": 256,
+   "h": 251,
+   "b": [
+    0,
+    0,
+    255,
+    250
+   ]
+  },
+  "generated/building/stronghold_city_hall.png": {
+   "bytes": 35223,
+   "w": 255,
+   "h": 256,
+   "b": [
+    0,
+    0,
+    254,
+    255
+   ]
+  },
+  "generated/building/stronghold_fort.png": {
+   "bytes": 37261,
+   "w": 384,
+   "h": 187
+  },
+  "generated/building/stronghold_town_hall.png": {
+   "bytes": 36756,
+   "w": 256,
+   "h": 249,
+   "b": [
+    0,
+    0,
+    255,
+    248
+   ]
+  },
+  "generated/building/stronghold_village_hall.png": {
+   "bytes": 34237,
+   "w": 256,
+   "h": 228,
+   "b": [
+    0,
+    0,
+    255,
+    227
+   ]
+  },
+  "generated/building/tower_capitol.png": {
+   "bytes": 36289,
+   "w": 246,
+   "h": 256,
+   "b": [
+    0,
+    0,
+    245,
+    255
+   ]
+  },
+  "generated/building/tower_citadel.png": {
+   "bytes": 42728,
+   "w": 384,
+   "h": 226
+  },
+  "generated/building/tower_city_hall.png": {
+   "bytes": 33141,
+   "w": 254,
+   "h": 256,
+   "b": [
+    0,
+    0,
+    253,
+    255
+   ]
+  },
+  "generated/building/tower_fort.png": {
+   "bytes": 31525,
+   "w": 384,
+   "h": 173
+  },
+  "generated/building/tower_town_hall.png": {
+   "bytes": 35977,
+   "w": 256,
+   "h": 254,
+   "b": [
+    0,
+    0,
+    255,
+    253
+   ]
+  },
+  "generated/building/tower_village_hall.png": {
+   "bytes": 31857,
+   "w": 256,
+   "h": 250,
+   "b": [
+    0,
+    0,
+    255,
+    249
+   ]
+  },
+  "generated/object/abandoned_mine.png": {
+   "bytes": 23693,
+   "w": 256,
+   "h": 135,
+   "b": [
+    0,
+    0,
+    255,
+    134
+   ]
+  },
+  "generated/object/alchemists_lab.png": {
+   "bytes": 25024,
+   "w": 256,
+   "h": 169,
+   "b": [
+    0,
+    0,
+    254,
+    168
+   ]
+  },
+  "generated/object/altar_of_sacrifice.png": {
+   "bytes": 25131,
+   "w": 256,
+   "h": 141,
+   "b": [
+    0,
+    0,
+    255,
+    140
+   ]
+  },
+  "generated/object/arena.png": {
+   "bytes": 26477,
+   "w": 256,
+   "h": 162,
+   "b": [
+    0,
+    0,
+    255,
+    161
+   ]
+  },
+  "generated/object/artifact_major.png": {
+   "bytes": 29458,
+   "w": 206,
+   "h": 256,
+   "b": [
+    0,
+    0,
+    205,
+    255
+   ]
+  },
+  "generated/object/artifact_minor.png": {
+   "bytes": 30188,
+   "w": 256,
+   "h": 252,
+   "b": [
+    0,
+    0,
+    255,
+    251
+   ]
+  },
+  "generated/object/artifact_random.png": {
+   "bytes": 22450,
+   "w": 147,
+   "h": 256,
+   "b": [
+    1,
+    0,
+    146,
+    255
+   ]
+  },
+  "generated/object/artifact_relic.png": {
+   "bytes": 28101,
+   "w": 194,
+   "h": 256,
+   "b": [
+    0,
+    0,
+    192,
+    255
+   ]
+  },
+  "generated/object/artifact_treasure.png": {
+   "bytes": 33782,
+   "w": 256,
+   "h": 240,
+   "b": [
+    0,
+    0,
+    255,
+    239
+   ]
+  },
+  "generated/object/bandit_hideout.png": {
+   "bytes": 25353,
+   "w": 256,
+   "h": 155,
+   "b": [
+    0,
+    0,
+    255,
+    154
+   ]
+  },
+  "generated/object/beholders_sanctuary.png": {
+   "bytes": 26471,
+   "w": 256,
+   "h": 154,
+   "b": [
+    0,
+    0,
+    255,
+    153
+   ]
+  },
+  "generated/object/black_market.png": {
+   "bytes": 22322,
+   "w": 256,
+   "h": 143,
+   "b": [
+    0,
+    0,
+    255,
+    142
+   ]
+  },
+  "generated/object/black_tower.png": {
+   "bytes": 16688,
+   "w": 109,
+   "h": 256,
+   "b": [
+    0,
+    0,
+    108,
+    255
+   ]
+  },
+  "generated/object/buoy.png": {
+   "bytes": 22030,
+   "w": 219,
+   "h": 256,
+   "b": [
+    0,
+    0,
+    218,
+    255
+   ]
+  },
+  "generated/object/campfire.png": {
+   "bytes": 27359,
+   "w": 256,
+   "h": 208,
+   "b": [
+    0,
+    0,
+    255,
+    207
+   ]
+  },
+  "generated/object/churchyard.png": {
+   "bytes": 24569,
+   "w": 256,
+   "h": 161,
+   "b": [
+    0,
+    0,
+    255,
+    160
+   ]
+  },
+  "generated/object/colosseum_of_the_magi.png": {
+   "bytes": 28447,
+   "w": 256,
+   "h": 169,
+   "b": [
+    0,
+    0,
+    255,
+    168
+   ]
+  },
+  "generated/object/corpse.png": {
+   "bytes": 28240,
+   "w": 256,
+   "h": 220,
+   "b": [
+    0,
+    0,
+    255,
+    219
+   ]
+  },
+  "generated/object/crypt.png": {
+   "bytes": 37708,
+   "w": 250,
+   "h": 256,
+   "b": [
+    0,
+    0,
+    249,
+    255
+   ]
+  },
+  "generated/object/crystal_cavern.png": {
+   "bytes": 25882,
+   "w": 256,
+   "h": 156,
+   "b": [
+    0,
+    0,
+    255,
+    155
+   ]
+  },
+  "generated/object/crystal_dragon_roost.png": {
+   "bytes": 37923,
+   "w": 238,
+   "h": 256,
+   "b": [
+    0,
+    0,
+    237,
+    255
+   ]
+  },
+  "generated/object/cyclops_stockpile.png": {
+   "bytes": 27236,
+   "w": 256,
+   "h": 152,
+   "b": [
+    0,
+    0,
+    255,
+    151
+   ]
+  },
+  "generated/object/den_of_thieves.png": {
+   "bytes": 34639,
+   "w": 256,
+   "h": 255,
+   "b": [
+    0,
+    0,
+    255,
+    254
+   ]
+  },
+  "generated/object/derelict_ship.png": {
+   "bytes": 23861,
+   "w": 256,
+   "h": 161,
+   "b": [
+    0,
+    0,
+    255,
+    160
+   ]
+  },
+  "generated/object/dragon_fly_hive.png": {
+   "bytes": 24430,
+   "w": 256,
+   "h": 163,
+   "b": [
+    0,
+    0,
+    255,
+    162
+   ]
+  },
+  "generated/object/dragon_utopia.png": {
+   "bytes": 39459,
+   "w": 256,
+   "h": 250,
+   "b": [
+    0,
+    0,
+    255,
+    249
+   ]
+  },
+  "generated/object/dwarven_treasury.png": {
+   "bytes": 26961,
+   "w": 256,
+   "h": 162,
+   "b": [
+    0,
+    0,
+    255,
+    161
+   ]
+  },
+  "generated/object/elemental_forge.png": {
+   "bytes": 29367,
+   "w": 256,
+   "h": 184,
+   "b": [
+    0,
+    0,
+    255,
+    183
+   ]
+  },
+  "generated/object/experimental_shop.png": {
+   "bytes": 28242,
+   "w": 256,
+   "h": 182,
+   "b": [
+    0,
+    1,
+    255,
+    181
+   ]
+  },
+  "generated/object/faerie_ring.png": {
+   "bytes": 22094,
+   "w": 256,
+   "h": 144,
+   "b": [
+    0,
+    0,
+    255,
+    143
+   ]
+  },
+  "generated/object/flotsam.png": {
+   "bytes": 29469,
+   "w": 256,
+   "h": 191,
+   "b": [
+    0,
+    0,
+    255,
+    190
+   ]
+  },
+  "generated/object/fountain_of_fortune.png": {
+   "bytes": 33864,
+   "w": 244,
+   "h": 256,
+   "b": [
+    0,
+    0,
+    243,
+    255
+   ]
+  },
+  "generated/object/fountain_of_youth.png": {
+   "bytes": 24527,
+   "w": 256,
+   "h": 151,
+   "b": [
+    0,
+    0,
+    255,
+    150
+   ]
+  },
+  "generated/object/freelancers_guild.png": {
+   "bytes": 21180,
+   "w": 256,
+   "h": 130,
+   "b": [
+    0,
+    0,
+    255,
+    129
+   ]
+  },
+  "generated/object/garden_of_revelation.png": {
+   "bytes": 29764,
+   "w": 256,
+   "h": 170,
+   "b": [
+    0,
+    0,
+    255,
+    169
+   ]
+  },
+  "generated/object/gazebo.png": {
+   "bytes": 29773,
+   "w": 196,
+   "h": 256,
+   "b": [
+    0,
+    0,
+    195,
+    255
+   ]
+  },
+  "generated/object/gem_pond.png": {
+   "bytes": 27693,
+   "w": 256,
+   "h": 160,
+   "b": [
+    0,
+    0,
+    255,
+    159
+   ]
+  },
+  "generated/object/gold_mine.png": {
+   "bytes": 29943,
+   "w": 256,
+   "h": 204,
+   "b": [
+    0,
+    0,
+    255,
+    203
+   ]
+  },
+  "generated/object/grail.png": {
+   "bytes": 23425,
+   "w": 256,
+   "h": 160,
+   "b": [
+    0,
+    0,
+    255,
+    159
+   ]
+  },
+  "generated/object/griffin_conservatory.png": {
+   "bytes": 25207,
+   "w": 256,
+   "h": 157,
+   "b": [
+    0,
+    0,
+    255,
+    156
+   ]
+  },
+  "generated/object/haunted_library.png": {
+   "bytes": 29463,
+   "w": 256,
+   "h": 172,
+   "b": [
+    0,
+    0,
+    255,
+    171
+   ]
+  },
+  "generated/object/hermits_shack.png": {
+   "bytes": 32326,
+   "w": 239,
+   "h": 256,
+   "b": [
+    0,
+    0,
+    238,
+    255
+   ]
+  },
+  "generated/object/hill_fort.png": {
+   "bytes": 27006,
+   "w": 256,
+   "h": 157,
+   "b": [
+    0,
+    0,
+    255,
+    156
+   ]
+  },
+  "generated/object/hole.png": {
+   "bytes": 21049,
+   "w": 256,
+   "h": 159,
+   "b": [
+    0,
+    0,
+    255,
+    158
+   ]
+  },
+  "generated/object/idol_of_fortune.png": {
+   "bytes": 24803,
+   "w": 158,
+   "h": 256,
+   "b": [
+    0,
+    0,
+    157,
+    255
+   ]
+  },
+  "generated/object/imp_cache.png": {
+   "bytes": 24366,
+   "w": 256,
+   "h": 158,
+   "b": [
+    0,
+    0,
+    255,
+    157
+   ]
+  },
+  "generated/object/ivory_tower.png": {
+   "bytes": 12346,
+   "w": 89,
+   "h": 256,
+   "b": [
+    0,
+    0,
+    87,
+    255
+   ]
+  },
+  "generated/object/jetsam.png": {
+   "bytes": 28584,
+   "w": 256,
+   "h": 206,
+   "b": [
+    0,
+    0,
+    255,
+    205
+   ]
+  },
+  "generated/object/keymasters_tent_black.png": {
+   "bytes": 21273,
+   "w": 225,
+   "h": 256,
+   "b": [
+    0,
+    0,
+    224,
+    255
+   ]
+  },
+  "generated/object/keymasters_tent_brown.png": {
+   "bytes": 22450,
+   "w": 225,
+   "h": 256,
+   "b": [
+    0,
+    0,
+    224,
+    255
+   ]
+  },
+  "generated/object/keymasters_tent_dark_blue.png": {
+   "bytes": 23756,
+   "w": 225,
+   "h": 256,
+   "b": [
+    0,
+    0,
+    224,
+    255
+   ]
+  },
+  "generated/object/keymasters_tent_green.png": {
+   "bytes": 23475,
+   "w": 225,
+   "h": 256,
+   "b": [
+    0,
+    0,
+    224,
+    255
+   ]
+  },
+  "generated/object/keymasters_tent_light_blue.png": {
+   "bytes": 23667,
+   "w": 225,
+   "h": 256,
+   "b": [
+    0,
+    0,
+    224,
+    255
+   ]
+  },
+  "generated/object/keymasters_tent_purple.png": {
+   "bytes": 24488,
+   "w": 225,
+   "h": 256,
+   "b": [
+    0,
+    0,
+    224,
+    255
+   ]
+  },
+  "generated/object/keymasters_tent_red.png": {
+   "bytes": 23815,
+   "w": 225,
+   "h": 256,
+   "b": [
+    0,
+    0,
+    224,
+    255
+   ]
+  },
+  "generated/object/keymasters_tent_white.png": {
+   "bytes": 16434,
+   "w": 225,
+   "h": 256,
+   "b": [
+    0,
+    0,
+    224,
+    255
+   ]
+  },
+  "generated/object/lake_3x2.png": {
+   "bytes": 20848,
+   "w": 256,
+   "h": 137,
+   "b": [
+    0,
+    0,
+    255,
+    136
+   ]
+  },
+  "generated/object/lean_to.png": {
+   "bytes": 27249,
+   "w": 256,
+   "h": 220,
+   "b": [
+    0,
+    0,
+    255,
+    219
+   ]
+  },
+  "generated/object/learning_stone.png": {
+   "bytes": 28381,
+   "w": 178,
+   "h": 256,
+   "b": [
+    0,
+    0,
+    177,
+    255
+   ]
+  },
+  "generated/object/library_of_enlightenment.png": {
+   "bytes": 36009,
+   "w": 253,
+   "h": 256,
+   "b": [
+    0,
+    0,
+    252,
+    255
+   ]
+  },
+  "generated/object/magic_spring.png": {
+   "bytes": 24967,
+   "w": 256,
+   "h": 158,
+   "b": [
+    0,
+    0,
+    255,
+    157
+   ]
+  },
+  "generated/object/magic_well.png": {
+   "bytes": 30962,
+   "w": 197,
+   "h": 256,
+   "b": [
+    0,
+    0,
+    196,
+    255
+   ]
+  },
+  "generated/object/mansion.png": {
+   "bytes": 23110,
+   "w": 256,
+   "h": 162,
+   "b": [
+    0,
+    0,
+    255,
+    161
+   ]
+  },
+  "generated/object/marletto_tower.png": {
+   "bytes": 17434,
+   "w": 93,
+   "h": 256,
+   "b": [
+    0,
+    0,
+    92,
+    255
+   ]
+  },
+  "generated/object/medusa_stores.png": {
+   "bytes": 26744,
+   "w": 256,
+   "h": 156,
+   "b": [
+    0,
+    0,
+    255,
+    155
+   ]
+  },
+  "generated/object/mercenary_camp.png": {
+   "bytes": 19199,
+   "w": 256,
+   "h": 134,
+   "b": [
+    0,
+    0,
+    255,
+    133
+   ]
+  },
+  "generated/object/mermaids.png": {
+   "bytes": 31794,
+   "w": 251,
+   "h": 256,
+   "b": [
+    0,
+    0,
+    250,
+    255
+   ]
+  },
+  "generated/object/mineral_spring.png": {
+   "bytes": 24927,
+   "w": 256,
+   "h": 153,
+   "b": [
+    0,
+    0,
+    255,
+    152
+   ]
+  },
+  "generated/object/mountains_4x3.png": {
+   "bytes": 21007,
+   "w": 256,
+   "h": 137,
+   "b": [
+    0,
+    0,
+    255,
+    136
+   ]
+  },
+  "generated/object/mystical_garden.png": {
+   "bytes": 28592,
+   "w": 256,
+   "h": 168,
+   "b": [
+    0,
+    0,
+    255,
+    167
+   ]
+  },
+  "generated/object/naga_bank.png": {
+   "bytes": 26933,
+   "w": 256,
+   "h": 162,
+   "b": [
+    0,
+    0,
+    255,
+    161
+   ]
+  },
+  "generated/object/oak_trees_2x2.png": {
+   "bytes": 38338,
+   "w": 256,
+   "h": 243,
+   "b": [
+    0,
+    0,
+    255,
+    242
+   ]
+  },
+  "generated/object/oasis.png": {
+   "bytes": 27749,
+   "w": 256,
+   "h": 163,
+   "b": [
+    0,
+    0,
+    255,
+    162
+   ]
+  },
+  "generated/object/ore_pit.png": {
+   "bytes": 29158,
+   "w": 256,
+   "h": 176,
+   "b": [
+    0,
+    0,
+    255,
+    175
+   ]
+  },
+  "generated/object/pandoras_box.png": {
+   "bytes": 35555,
+   "w": 256,
+   "h": 244,
+   "b": [
+    0,
+    0,
+    255,
+    243
+   ]
+  },
+  "generated/object/pirate_cavern.png": {
+   "bytes": 26167,
+   "w": 256,
+   "h": 167,
+   "b": [
+    0,
+    0,
+    255,
+    166
+   ]
+  },
+  "generated/object/pyramid.png": {
+   "bytes": 23355,
+   "w": 256,
+   "h": 159,
+   "b": [
+    0,
+    0,
+    255,
+    158
+   ]
+  },
+  "generated/object/rally_flag.png": {
+   "bytes": 18802,
+   "w": 199,
+   "h": 256,
+   "b": [
+    0,
+    0,
+    198,
+    255
+   ]
+  },
+  "generated/object/red_tower.png": {
+   "bytes": 15790,
+   "w": 97,
+   "h": 256,
+   "b": [
+    0,
+    0,
+    96,
+    255
+   ]
+  },
+  "generated/object/resource_crystal.png": {
+   "bytes": 31464,
+   "w": 219,
+   "h": 256,
+   "b": [
+    0,
+    0,
+    218,
+    255
+   ]
+  },
+  "generated/object/resource_gems.png": {
+   "bytes": 24534,
+   "w": 256,
+   "h": 175,
+   "b": [
+    0,
+    0,
+    255,
+    174
+   ]
+  },
+  "generated/object/resource_gold.png": {
+   "bytes": 31284,
+   "w": 256,
+   "h": 226,
+   "b": [
+    0,
+    0,
+    255,
+    225
+   ]
+  },
+  "generated/object/resource_mercury.png": {
+   "bytes": 28685,
+   "w": 225,
+   "h": 256,
+   "b": [
+    0,
+    0,
+    224,
+    255
+   ]
+  },
+  "generated/object/resource_ore.png": {
+   "bytes": 32336,
+   "w": 256,
+   "h": 206,
+   "b": [
+    0,
+    0,
+    255,
+    205
+   ]
+  },
+  "generated/object/resource_random.png": {
+   "bytes": 27151,
+   "w": 256,
+   "h": 197,
+   "b": [
+    0,
+    0,
+    255,
+    196
+   ]
+  },
+  "generated/object/resource_sulfur.png": {
+   "bytes": 30494,
+   "w": 256,
+   "h": 227,
+   "b": [
+    0,
+    0,
+    255,
+    226
+   ]
+  },
+  "generated/object/resource_wood.png": {
+   "bytes": 31346,
+   "w": 256,
+   "h": 216,
+   "b": [
+    0,
+    0,
+    255,
+    215
+   ]
+  },
+  "generated/object/ruins.png": {
+   "bytes": 27438,
+   "w": 256,
+   "h": 148,
+   "b": [
+    0,
+    0,
+    255,
+    147
+   ]
+  },
+  "generated/object/sawmill.png": {
+   "bytes": 29894,
+   "w": 256,
+   "h": 181,
+   "b": [
+    0,
+    0,
+    255,
+    180
+   ]
+  },
+  "generated/object/scholar.png": {
+   "bytes": 24862,
+   "w": 187,
+   "h": 256,
+   "b": [
+    0,
+    0,
+    186,
+    255
+   ]
+  },
+  "generated/object/school_of_magic.png": {
+   "bytes": 27051,
+   "w": 187,
+   "h": 256,
+   "b": [
+    0,
+    0,
+    186,
+    255
+   ]
+  },
+  "generated/object/school_of_war.png": {
+   "bytes": 38889,
+   "w": 256,
+   "h": 242,
+   "b": [
+    0,
+    0,
+    255,
+    241
+   ]
+  },
+  "generated/object/sea_barrel.png": {
+   "bytes": 25112,
+   "w": 256,
+   "h": 176,
+   "b": [
+    0,
+    0,
+    255,
+    175
+   ]
+  },
+  "generated/object/sea_chest.png": {
+   "bytes": 30966,
+   "w": 256,
+   "h": 195,
+   "b": [
+    0,
+    0,
+    255,
+    194
+   ]
+  },
+  "generated/object/shipwreck.png": {
+   "bytes": 23416,
+   "w": 256,
+   "h": 169,
+   "b": [
+    0,
+    0,
+    255,
+    168
+   ]
+  },
+  "generated/object/shipwreck_survivor.png": {
+   "bytes": 26311,
+   "w": 256,
+   "h": 175,
+   "b": [
+    0,
+    0,
+    255,
+    174
+   ]
+  },
+  "generated/object/shrine_of_magic_gesture.png": {
+   "bytes": 37095,
+   "w": 256,
+   "h": 256,
+   "b": [
+    0,
+    0,
+    255,
+    255
+   ]
+  },
+  "generated/object/shrine_of_magic_incantation.png": {
+   "bytes": 32941,
+   "w": 219,
+   "h": 256,
+   "b": [
+    0,
+    0,
+    218,
+    255
+   ]
+  },
+  "generated/object/shrine_of_magic_mystery.png": {
+   "bytes": 28635,
+   "w": 191,
+   "h": 256,
+   "b": [
+    0,
+    0,
+    190,
+    255
+   ]
+  },
+  "generated/object/shrine_of_magic_thought.png": {
+   "bytes": 30229,
+   "w": 187,
+   "h": 256,
+   "b": [
+    0,
+    0,
+    186,
+    255
+   ]
+  },
+  "generated/object/spell_scroll.png": {
+   "bytes": 22739,
+   "w": 256,
+   "h": 190,
+   "b": [
+    0,
+    0,
+    255,
+    189
+   ]
+  },
+  "generated/object/spit.png": {
+   "bytes": 21367,
+   "w": 256,
+   "h": 149,
+   "b": [
+    0,
+    0,
+    255,
+    148
+   ]
+  },
+  "generated/object/stables.png": {
+   "bytes": 29486,
+   "w": 256,
+   "h": 204,
+   "b": [
+    0,
+    0,
+    255,
+    203
+   ]
+  },
+  "generated/object/star_axis.png": {
+   "bytes": 24463,
+   "w": 189,
+   "h": 256,
+   "b": [
+    0,
+    0,
+    188,
+    255
+   ]
+  },
+  "generated/object/sulfur_dune.png": {
+   "bytes": 21839,
+   "w": 256,
+   "h": 169,
+   "b": [
+    0,
+    0,
+    255,
+    168
+   ]
+  },
+  "generated/object/sunken_vault.png": {
+   "bytes": 25473,
+   "w": 256,
+   "h": 138,
+   "b": [
+    0,
+    0,
+    255,
+    137
+   ]
+  },
+  "generated/object/swan_pond.png": {
+   "bytes": 24382,
+   "w": 256,
+   "h": 147,
+   "b": [
+    0,
+    0,
+    255,
+    146
+   ]
+  },
+  "generated/object/temple.png": {
+   "bytes": 35022,
+   "w": 256,
+   "h": 252,
+   "b": [
+    0,
+    0,
+    255,
+    251
+   ]
+  },
+  "generated/object/temple_of_the_sea.png": {
+   "bytes": 41546,
+   "w": 245,
+   "h": 256,
+   "b": [
+    0,
+    0,
+    244,
+    255
+   ]
+  },
+  "generated/object/town_castle_citadel.png": {
+   "bytes": 22303,
+   "w": 256,
+   "h": 144,
+   "b": [
+    0,
+    0,
+    255,
+    143
+   ]
+  },
+  "generated/object/town_inferno_village.png": {
+   "bytes": 21230,
+   "w": 256,
+   "h": 123,
+   "b": [
+    0,
+    0,
+    255,
+    122
+   ]
+  },
+  "generated/object/trading_post.png": {
+   "bytes": 21844,
+   "w": 256,
+   "h": 137,
+   "b": [
+    0,
+    0,
+    255,
+    136
+   ]
+  },
+  "generated/object/treasure_chest.png": {
+   "bytes": 25706,
+   "w": 256,
+   "h": 246,
+   "b": [
+    0,
+    0,
+    255,
+    245
+   ]
+  },
+  "generated/object/tree_of_knowledge.png": {
+   "bytes": 26614,
+   "w": 167,
+   "h": 256,
+   "b": [
+    0,
+    0,
+    166,
+    255
+   ]
+  },
+  "generated/object/troll_cavern.png": {
+   "bytes": 26986,
+   "w": 256,
+   "h": 160,
+   "b": [
+    0,
+    0,
+    255,
+    159
+   ]
+  },
+  "generated/object/university.png": {
+   "bytes": 23765,
+   "w": 256,
+   "h": 160,
+   "b": [
+    0,
+    0,
+    255,
+    159
+   ]
+  },
+  "generated/object/vial_of_mana.png": {
+   "bytes": 24128,
+   "w": 184,
+   "h": 256,
+   "b": [
+    0,
+    0,
+    183,
+    255
+   ]
+  },
+  "generated/object/wagon.png": {
+   "bytes": 31082,
+   "w": 256,
+   "h": 233,
+   "b": [
+    0,
+    0,
+    255,
+    232
+   ]
+  },
+  "generated/object/war_machine_factory.png": {
+   "bytes": 22791,
+   "w": 256,
+   "h": 156,
+   "b": [
+    0,
+    0,
+    255,
+    155
+   ]
+  },
+  "generated/object/warehouse_of_crystal.png": {
+   "bytes": 32480,
+   "w": 256,
+   "h": 208,
+   "b": [
+    0,
+    0,
+    255,
+    207
+   ]
+  },
+  "generated/object/warehouse_of_gems.png": {
+   "bytes": 34279,
+   "w": 256,
+   "h": 231,
+   "b": [
+    0,
+    0,
+    255,
+    230
+   ]
+  },
+  "generated/object/warehouse_of_gold.png": {
+   "bytes": 36177,
+   "w": 256,
+   "h": 248,
+   "b": [
+    0,
+    0,
+    255,
+    247
+   ]
+  },
+  "generated/object/warehouse_of_mercury.png": {
+   "bytes": 38681,
+   "w": 256,
+   "h": 253,
+   "b": [
+    0,
+    0,
+    255,
+    252
+   ]
+  },
+  "generated/object/warehouse_of_ore.png": {
+   "bytes": 35717,
+   "w": 256,
+   "h": 225,
+   "b": [
+    0,
+    0,
+    255,
+    224
+   ]
+  },
+  "generated/object/warehouse_of_sulfur.png": {
+   "bytes": 32248,
+   "w": 256,
+   "h": 216,
+   "b": [
+    0,
+    0,
+    255,
+    215
+   ]
+  },
+  "generated/object/warehouse_of_wood.png": {
+   "bytes": 30526,
+   "w": 256,
+   "h": 191,
+   "b": [
+    0,
+    0,
+    255,
+    190
+   ]
+  },
+  "generated/object/warriors_tomb.png": {
+   "bytes": 25262,
+   "w": 256,
+   "h": 166,
+   "b": [
+    0,
+    0,
+    255,
+    165
+   ]
+  },
+  "generated/object/water_wheel.png": {
+   "bytes": 38730,
+   "w": 256,
+   "h": 250,
+   "b": [
+    0,
+    0,
+    255,
+    249
+   ]
+  },
+  "generated/object/watering_hole.png": {
+   "bytes": 24098,
+   "w": 256,
+   "h": 148,
+   "b": [
+    0,
+    0,
+    255,
+    147
+   ]
+  },
+  "generated/object/windmill.png": {
+   "bytes": 26437,
+   "w": 204,
+   "h": 256,
+   "b": [
+    0,
+    0,
+    203,
+    255
+   ]
+  },
+  "generated/object/witch_hut.png": {
+   "bytes": 36242,
+   "w": 256,
+   "h": 248,
+   "b": [
+    0,
+    0,
+    255,
+    247
+   ]
+  },
+  "generated/object/wolf_raider_picket.png": {
+   "bytes": 25594,
+   "w": 256,
+   "h": 157,
+   "b": [
+    0,
+    0,
+    255,
+    156
+   ]
+  },
+  "idylwild-icons/breastplate.png": {
+   "bytes": 647,
+   "w": 32,
+   "h": 32,
+   "b": [
+    2,
+    0,
+    27,
+    31
+   ]
+  },
+  "idylwild-icons/chain.png": {
+   "bytes": 612,
+   "w": 32,
+   "h": 32,
+   "b": [
+    1,
+    1,
+    30,
+    28
+   ]
+  },
+  "idylwild-icons/chainmail_pants.png": {
+   "bytes": 662,
+   "w": 32,
+   "h": 32,
+   "b": [
+    0,
+    0,
+    31,
+    31
+   ]
+  },
+  "idylwild-icons/cloak.png": {
+   "bytes": 503,
+   "w": 32,
+   "h": 32,
+   "b": [
+    6,
+    2,
+    27,
+    29
+   ]
+  },
+  "idylwild-icons/close_helmet.png": {
+   "bytes": 563,
+   "w": 32,
+   "h": 32,
+   "b": [
+    4,
+    0,
+    29,
+    31
+   ]
+  },
+  "idylwild-icons/cloth_hood.png": {
+   "bytes": 551,
+   "w": 32,
+   "h": 32,
+   "b": [
+    4,
+    2,
+    27,
+    30
+   ]
+  },
+  "idylwild-icons/gauntlets.png": {
+   "bytes": 568,
+   "w": 32,
+   "h": 32,
+   "b": [
+    0,
+    4,
+    31,
+    26
+   ]
+  },
+  "idylwild-icons/gold_ore.png": {
+   "bytes": 566,
+   "w": 32,
+   "h": 32,
+   "b": [
+    4,
+    4,
+    26,
+    26
+   ]
+  },
+  "idylwild-icons/greaves.png": {
+   "bytes": 645,
+   "w": 32,
+   "h": 32,
+   "b": [
+    2,
+    1,
+    29,
+    31
+   ]
+  },
+  "idylwild-icons/leather_boots.png": {
+   "bytes": 584,
+   "w": 32,
+   "h": 32,
+   "b": [
+    2,
+    1,
+    28,
+    30
+   ]
+  },
+  "idylwild-icons/log.png": {
+   "bytes": 592,
+   "w": 32,
+   "h": 32,
+   "b": [
+    3,
+    2,
+    29,
+    28
+   ]
+  },
+  "idylwild-icons/platemail_pants.png": {
+   "bytes": 555,
+   "w": 32,
+   "h": 32,
+   "b": [
+    0,
+    3,
+    31,
+    29
+   ]
+  },
+  "lpc-siege-weapons/ballista-arm.png": {
+   "bytes": 44037,
+   "w": 768,
+   "h": 1024
+  },
+  "lpc-siege-weapons/ballista.png": {
+   "bytes": 19626,
+   "w": 768,
+   "h": 1024
+  },
+  "lpc-siege-weapons/cannon.png": {
+   "bytes": 12288,
+   "w": 768,
+   "h": 1024
+  },
+  "lpc-siege-weapons/catapult.png": {
+   "bytes": 42862,
+   "w": 768,
+   "h": 1024
+  },
+  "lpc-siege-weapons/wheels-bg.png": {
+   "bytes": 10199,
+   "w": 768,
+   "h": 1024
+  },
+  "lpc-siege-weapons/wheels-fg.png": {
+   "bytes": 13057,
+   "w": 768,
+   "h": 1024
+  },
+  "lrsf-fantasy-sfx/jingle_lose_00.mp3": {
+   "bytes": 145612
+  },
+  "sbs-tiny-textures/p1_grass_17.png": {
+   "bytes": 44401,
+   "w": 128,
+   "h": 128,
+   "b": [
+    0,
+    0,
+    127,
+    127
+   ]
+  },
+  "sbs-tiny-textures/p2_dirt_09.png": {
+   "bytes": 36558,
+   "w": 128,
+   "h": 128,
+   "b": [
+    0,
+    0,
+    127,
+    127
+   ]
+  },
+  "sbs-tiny-textures/p2_elements_05.png": {
+   "bytes": 33332,
+   "w": 128,
+   "h": 128,
+   "b": [
+    0,
+    0,
+    127,
+    127
+   ]
+  },
+  "sbs-tiny-textures/p2_elements_07.png": {
+   "bytes": 30741,
+   "w": 128,
+   "h": 128,
+   "b": [
+    0,
+    0,
+    127,
+    127
+   ]
+  },
+  "sbs-tiny-textures/p2_stone_03.png": {
+   "bytes": 39847,
+   "w": 128,
+   "h": 128,
+   "b": [
+    0,
+    0,
+    127,
+    127
+   ]
+  },
+  "sbs-tiny-textures/p2_stone_11.png": {
+   "bytes": 29097,
+   "w": 128,
+   "h": 128,
+   "b": [
+    0,
+    0,
+    127,
+    127
+   ]
+  },
+  "sbs-tiny-textures/p2_stone_13.png": {
+   "bytes": 41144,
+   "w": 128,
+   "h": 128,
+   "b": [
+    0,
+    0,
+    127,
+    127
+   ]
+  },
+  "sbs-tiny-textures/p3_stone_01.png": {
+   "bytes": 47270,
+   "w": 128,
+   "h": 128,
+   "b": [
+    0,
+    0,
+    127,
+    127
+   ]
+  },
+  "sbs-tiny-textures/p3_stone_04.png": {
+   "bytes": 41652,
+   "w": 128,
+   "h": 128,
+   "b": [
+    0,
+    0,
+    127,
+    127
+   ]
+  },
+  "sbs-tiny-textures/p3_terrain_07.png": {
+   "bytes": 44265,
+   "w": 128,
+   "h": 128,
+   "b": [
+    0,
+    0,
+    127,
+    127
+   ]
+  },
+  "sbs-tiny-textures/p3_terrain_15.png": {
+   "bytes": 42852,
+   "w": 128,
+   "h": 128,
+   "b": [
+    0,
+    0,
+    127,
+    127
+   ]
+  }
+ },
+ "units": {
+  "ballista": {
+   "b": [
+    9,
+    0,
+    118,
+    122
+   ],
+   "rows": {
+    "right": [
+     14,
+     0,
+     118,
+     122
+    ],
+    "left": [
+     9,
+     0,
+     113,
+     122
+    ]
+   }
+  },
+  "catapult": {
+   "b": [
+    0,
+    2,
+    127,
+    109
+   ],
+   "rows": {
+    "right": [
+     0,
+     2,
+     120,
+     109
+    ],
+    "left": [
+     7,
+     2,
+     127,
+     109
+    ]
+   }
+  },
+  "cannon": {
+   "b": [
+    2,
+    36,
+    125,
+    101
+   ],
+   "rows": {
+    "right": [
+     2,
+     36,
+     125,
+     101
+    ],
+    "left": [
+     2,
+     36,
+     125,
+     101
+    ]
+   }
+  }
+ }
+}

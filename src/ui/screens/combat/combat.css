@@ -1,0 +1,53 @@
+/* Combat screen (prefix cmb-). Stage 1280x720: field canvas 560, queue 56, control panel 104. */
+.cmb { position: absolute; inset: 0; width: 1280px; height: 720px; display: flex; flex-direction: column; background: var(--stone-0); user-select: none; }
+.cmb-field { position: relative; width: 1280px; height: 560px; overflow: hidden; }
+.cmb-canvas { display: block; }
+.cmb-tactics { position: absolute; left: 50%; bottom: 10px; transform: translateX(-50%); display: flex; align-items: center; gap: 12px;
+  padding: 6px 12px; background: rgba(12, 10, 8, 0.85); border: 1px solid var(--gold-1); border-radius: 4px; color: var(--text); }
+
+.cmb-queue { display: flex; align-items: center; gap: 5px; height: 56px; padding: 0 10px; overflow: hidden;
+  background: linear-gradient(180deg, #2f291f, #17130e); border-top: 1px solid var(--gold-1); border-bottom: 1px solid #000;
+  box-shadow: inset 0 1px 0 rgba(255, 220, 150, 0.12), 0 -6px 12px rgba(0, 0, 0, 0.45); }
+.cmb-queue-item { position: relative; width: 48px; height: 48px; flex: 0 0 48px; border: 2px solid var(--stone-4); border-radius: 4px;
+  display: flex; align-items: flex-end; justify-content: center; overflow: hidden; box-shadow: inset 0 0 0 1px rgba(0, 0, 0, 0.6);
+  image-rendering: pixelated; }
+.cmb-queue-item canvas { image-rendering: pixelated; }
+.cmb-queue-item.cmb-side-attacker { border-color: #b0483a; background: radial-gradient(circle at 50% 70%, #6a3a2c, #2a1712 75%); }
+.cmb-queue-item.cmb-side-defender { border-color: #4a6cb0; background: radial-gradient(circle at 50% 70%, #34466e, #141a2c 75%); }
+.cmb-queue-item.is-active { flex-basis: 52px; width: 52px; height: 52px; border-color: var(--gold-4); box-shadow: 0 0 10px var(--gold-2), inset 0 0 0 1px #000; }
+.cmb-queue-item.is-waiting { opacity: 0.8; border-style: dashed; }
+.cmb-queue-item.is-next { opacity: 0.6; filter: saturate(0.7); }
+.cmb-queue-count { position: absolute; right: 1px; bottom: 1px; padding: 0 4px; border-radius: 3px; font-size: 11px; line-height: 14px; font-weight: bold;
+  color: #fff; background: rgba(10, 8, 6, 0.85); border: 1px solid rgba(232, 200, 112, 0.6); }
+.cmb-queue-sep { flex: 0 0 auto; align-self: stretch; display: flex; align-items: center; padding: 0 8px; margin: 6px 2px; color: var(--gold-4);
+  font-weight: bold; font-size: 12px; border-left: 1px solid var(--gold-0); border-right: 1px solid var(--gold-0); }
+
+.cmb-panel { display: flex; gap: 10px; height: 104px; padding: 7px 10px; box-sizing: border-box;
+  background: linear-gradient(180deg, #2e281f, #14100c); border-top: 1px solid var(--gold-1); }
+.cmb-panel-left { display: grid; grid-template-columns: 1fr 1fr; gap: 5px; align-content: center; width: 230px; }
+.cmb-panel-mid { flex: 1; display: flex; flex-direction: column; gap: 4px; min-width: 0; }
+.cmb-panel-right { display: flex; flex-direction: column; gap: 5px; justify-content: center; width: 300px; }
+.cmb-row { display: flex; gap: 5px; }
+.cmb-row > * { flex: 1; }
+.cmb-abilities { display: flex; flex-wrap: wrap; gap: 4px; }
+.cmb-status { height: 22px; line-height: 22px; padding: 0 10px; color: #ffe9b0; background: linear-gradient(180deg, rgba(0, 0, 0, 0.65), rgba(20, 14, 6, 0.65));
+  border: 1px solid #000; box-shadow: 0 0 0 1px var(--gold-0); border-radius: 2px; white-space: nowrap; overflow: hidden; text-overflow: ellipsis;
+  font-size: 14px; font-weight: bold; text-shadow: 0 1px 0 #000; }
+.cmb-log { flex: 1; min-height: 0; font-size: 13px; line-height: 1.35; color: #e6d8b8; background: rgba(0, 0, 0, 0.45); border-radius: 2px; }
+.cmb-log .k-log-line { color: #d6c7a6; }
+.cmb-log .k-log-line:last-child { color: #fff2cc; }
+
+.cmb-options { display: flex; flex-direction: column; gap: 8px; min-width: 280px; }
+.cmb-result { min-width: 480px; }
+.cmb-res-cols { display: flex; gap: 12px; }
+.cmb-res-col { flex: 1; padding: 6px; border: 1px solid var(--gold-0); background: rgba(0, 0, 0, 0.18); }
+.cmb-res-title { font-weight: bold; margin-bottom: 4px; }
+.cmb-res-units { display: flex; flex-wrap: wrap; gap: 6px; }
+.cmb-res-unit { display: flex; flex-direction: column; align-items: center; font-size: 12px; }
+.cmb-res-none { font-style: italic; opacity: 0.7; }
+.cmb-res-line { margin: 6px 0 0; }
+.cmb-info-foot { font-size: 12px; margin-top: 4px; }
+.cmb-info-spells { color: #c8a0ff; }
+.cmb-hero-info { display: flex; flex-direction: column; gap: 3px; font-size: 13px; }
+.cmb-hero-name { font-weight: bold; }
+.cmb-none { position: absolute; left: 440px; top: 260px; width: 400px; }
