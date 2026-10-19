@@ -119,7 +119,7 @@ async function main() {
   if (flag('dry')) { for (const e of todo) console.log(e.id); return; }
   const tries = new Map();
   const queue = [...todo];
-  let done = 0; let failed = 0; let seq = 0;
+  let done = 0; let failed = 0; let seq = 0; let stopped = false;
   const t0 = Date.now();
   async function worker(wi) {
     while (queue.length) {
@@ -137,6 +137,13 @@ async function main() {
       mkdirSync(dir, { recursive: true });
       const started = Date.now();
       const r = await runCodex(dir, batchPrompt(items), 6 * 60 * 1000 * items.length);
+      if (/usage limit/i.test(r.out)) {
+        // the account's Codex quota is used up: stop instead of burning retries (re-run later)
+        const when = (r.out.match(/try again at ([^.]*)/) || [])[1] || 'later';
+        if (!stopped) log(`STOP: Codex usage limit reached, try again at ${when}`);
+        stopped = true;
+        queue.length = 0;
+      }
       for (const e of items) {
         const f = join(dir, `${e.kind}__${e.key}.png`);
         if (validPng(f)) {
@@ -148,7 +155,7 @@ async function main() {
           const n = (tries.get(e.id) || 0) + 1;
           tries.set(e.id, n);
           const files = existsSync(dir) ? readdirSync(dir).join(',') : '';
-          if (n <= 2) { queue.push(e); log(`retry ${e.id} (attempt ${n}; exit ${r.code}; files: ${files || '-'}) ${r.out.slice(-300).replace(/\s+/g, ' ')}`); }
+          if (stopped) { /* left for the next run */ } else if (n <= 2) { queue.push(e); log(`retry ${e.id} (attempt ${n}; exit ${r.code}; files: ${files || '-'}) ${r.out.slice(-300).replace(/\s+/g, ' ')}`); }
           else { failed++; log(`FAIL ${e.id} after ${n} attempts`); }
         }
       }

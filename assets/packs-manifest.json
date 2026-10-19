@@ -6,7 +6,7 @@
    "author": "the H3online project author (generated with OpenAI image generation via Codex CLI)",
    "license": "LicenseRef-Project-Generated",
    "url": "https://developers.openai.com/codex/cli",
-   "files": 215
+   "files": 238
   },
   "sbs-tiny-textures": {
    "name": "Tiny Texture Pack 1, 2 and 3",
@@ -263,6 +263,17 @@
    "bytes": 36753,
    "w": 384,
    "h": 200
+  },
+  "generated/building/castle_tavern.png": {
+   "bytes": 36521,
+   "w": 256,
+   "h": 250,
+   "b": [
+    0,
+    0,
+    255,
+    249
+   ]
   },
   "generated/building/castle_town_hall.png": {
    "bytes": 33734,
@@ -546,6 +557,11 @@
     255,
     247
    ]
+  },
+  "generated/building/inferno_castle.png": {
+   "bytes": 46578,
+   "w": 384,
+   "h": 222
   },
   "generated/building/inferno_citadel.png": {
    "bytes": 45576,
@@ -2039,6 +2055,116 @@
     128
    ]
   },
+  "generated/object/town_conflux_castle.png": {
+   "bytes": 27552,
+   "w": 256,
+   "h": 183,
+   "b": [
+    0,
+    0,
+    255,
+    182
+   ]
+  },
+  "generated/object/town_conflux_citadel.png": {
+   "bytes": 26238,
+   "w": 256,
+   "h": 174,
+   "b": [
+    0,
+    0,
+    255,
+    173
+   ]
+  },
+  "generated/object/town_conflux_fort.png": {
+   "bytes": 24808,
+   "w": 256,
+   "h": 163,
+   "b": [
+    0,
+    0,
+    255,
+    162
+   ]
+  },
+  "generated/object/town_conflux_village.png": {
+   "bytes": 25679,
+   "w": 256,
+   "h": 171,
+   "b": [
+    0,
+    0,
+    255,
+    170
+   ]
+  },
+  "generated/object/town_cove_castle.png": {
+   "bytes": 25332,
+   "w": 256,
+   "h": 164,
+   "b": [
+    0,
+    0,
+    255,
+    163
+   ]
+  },
+  "generated/object/town_cove_citadel.png": {
+   "bytes": 25431,
+   "w": 256,
+   "h": 158,
+   "b": [
+    0,
+    0,
+    255,
+    157
+   ]
+  },
+  "generated/object/town_cove_fort.png": {
+   "bytes": 26069,
+   "w": 256,
+   "h": 158,
+   "b": [
+    0,
+    0,
+    255,
+    157
+   ]
+  },
+  "generated/object/town_cove_village.png": {
+   "bytes": 22595,
+   "w": 256,
+   "h": 149,
+   "b": [
+    0,
+    0,
+    255,
+    148
+   ]
+  },
+  "generated/object/town_dungeon_castle.png": {
+   "bytes": 24073,
+   "w": 256,
+   "h": 160,
+   "b": [
+    0,
+    0,
+    255,
+    159
+   ]
+  },
+  "generated/object/town_dungeon_citadel.png": {
+   "bytes": 26556,
+   "w": 256,
+   "h": 155,
+   "b": [
+    0,
+    0,
+    255,
+    154
+   ]
+  },
   "generated/object/town_dungeon_fort.png": {
    "bytes": 26948,
    "w": 256,
@@ -2059,6 +2185,72 @@
     0,
     255,
     159
+   ]
+  },
+  "generated/object/town_factory_fort.png": {
+   "bytes": 23514,
+   "w": 256,
+   "h": 139,
+   "b": [
+    0,
+    0,
+    255,
+    138
+   ]
+  },
+  "generated/object/town_factory_village.png": {
+   "bytes": 24255,
+   "w": 256,
+   "h": 141,
+   "b": [
+    0,
+    0,
+    255,
+    140
+   ]
+  },
+  "generated/object/town_fortress_castle.png": {
+   "bytes": 26427,
+   "w": 256,
+   "h": 168,
+   "b": [
+    0,
+    0,
+    255,
+    167
+   ]
+  },
+  "generated/object/town_fortress_citadel.png": {
+   "bytes": 27057,
+   "w": 256,
+   "h": 150,
+   "b": [
+    0,
+    0,
+    255,
+    149
+   ]
+  },
+  "generated/object/town_fortress_fort.png": {
+   "bytes": 25669,
+   "w": 256,
+   "h": 150,
+   "b": [
+    0,
+    0,
+    255,
+    149
+   ]
+  },
+  "generated/object/town_fortress_village.png": {
+   "bytes": 26853,
+   "w": 256,
+   "h": 163,
+   "b": [
+    0,
+    0,
+    255,
+    162
    ]
   },
   "generated/object/town_inferno_castle.png": {
@@ -2191,6 +2383,50 @@
     0,
     255,
     159
+   ]
+  },
+  "generated/object/town_stronghold_castle.png": {
+   "bytes": 27362,
+   "w": 256,
+   "h": 162,
+   "b": [
+    0,
+    0,
+    255,
+    161
+   ]
+  },
+  "generated/object/town_stronghold_citadel.png": {
+   "bytes": 26474,
+   "w": 256,
+   "h": 150,
+   "b": [
+    0,
+    0,
+    255,
+    149
+   ]
+  },
+  "generated/object/town_stronghold_fort.png": {
+   "bytes": 26075,
+   "w": 256,
+   "h": 143,
+   "b": [
+    0,
+    0,
+    255,
+    142
+   ]
+  },
+  "generated/object/town_stronghold_village.png": {
+   "bytes": 25358,
+   "w": 256,
+   "h": 167,
+   "b": [
+    0,
+    0,
+    255,
+    166
    ]
   },
   "generated/object/town_tower_castle.png": {
@@ -2477,6 +2713,17 @@
     0,
     191,
     167
+   ]
+  },
+  "generated/unit/first_aid_tent.png": {
+   "bytes": 17361,
+   "w": 192,
+   "h": 169,
+   "b": [
+    0,
+    0,
+    191,
+    168
    ]
   },
   "idylwild-icons/breastplate.png": {

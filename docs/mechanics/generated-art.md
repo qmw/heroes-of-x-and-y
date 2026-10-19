@@ -86,14 +86,16 @@ PNGs are 256-colour indexed (median cut, no dithering) which keeps them about a 
   screen (backdrop + all buildings of that faction), the 4 map-town levels, the 12 siege pieces.
   `GENERATED_OMIT` lists rejected pictures that keep the procedural art.
 
-## Status (2026-10-18, evening)
+## Status (2026-10-19, morning)
 
-Generation stops whenever the Codex usage limit is reached (last stop: 2026-10-18 ~20:24, next reset
-2026-10-19 03:09). Present: 152 map-object files (incl. 8 keymaster-tent colours and the map towns of
-castle, rampart, tower, inferno and necropolis, which are in use), 60 town buildings (halls, forts,
-citadels; no faction's town-screen set is complete, so town screens stay procedural), 2 artifact icons,
-the ammo cart. Still to make: ~670 images (other map objects, 6 map-town factions, all backdrops,
-faction buildings, 6 artifacts, first aid tent, arrow tower, boat, all siege pieces).
+The Codex quota runs out after a few minutes of generation (last stop 2026-10-19 08:21 CEST, next
+reset 13:16). `generate.mjs` now stops by itself when Codex reports the usage limit (log line
+`STOP: Codex usage limit reached, try again at ...`) instead of burning retries. Present: 172
+map-object files (incl. 8 keymaster-tent colours; map towns of 10 factions, all in use - factory
+still procedural), 62 town buildings (halls, forts, citadels and 2 more; no faction's town-screen set
+is complete, so town screens stay procedural), 2 artifact icons, ammo cart and first aid tent.
+Still to make: ~650 images (other map objects, factory map towns, all backdrops, faction buildings,
+6 artifacts, arrow tower, boat, all siege pieces).
 Resume (skips what exists, salvages interrupted runs; raw dir defaults to `.genart/`):
 `node tools/genart/generate.mjs --parallel 10`, then `node tools/genart/resize.mjs` and
 `node tools/build-packs-manifest.mjs --prune`; nothing else needs to change.
